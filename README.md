@@ -1,22 +1,21 @@
 # Team: Dalet
-# Application:  
+# Application:  Pet Connection
 
 # Team overview
 Name: Chuyang Zhong <br>
 Github: z175886 <br><br>
 Name: Zhongdong Yu <br>
 Github: Zhongdong-Siege <br><br>
-Zhou Xie <br>
+Name: Zhou Xie <br>
 Github:
 
 # Innovative Idea
-We plan to create a website specific about pets(cat,dog,hamsters...),help pets owner from all over the world share,connect,learn.
+We plan to create a website specific about pets(cat, dog, hamsters...),help pet owners from all over the world share pet's moment and hold offline party.
 
 # Important Components
-User can create a profile for the pets include image，pet's name, breed,age,where they live.
+User can create a profile for the pets include image，pet's name, breed, age, living place.
 
-pets owner can share their pets moments by upload short video,images,and other people can thumbs up or leave a comment.
+Pet owners can share their pets' moments by uploading short videos or images while other users can thumb up or leave a comment.
 
-user can search nearby new people and make friends.
+Helping pet owners to hold an offline party is the main purpose of the website. The party holder first posts the time, location, contact info, pet info, and activity description, and then invites others to join. Users who are not invited can send request to the holder. When a member joins, the website asks him/her to fill in his/her contact info and pet info, then update the info to the party.
 
-pets owner can plan a social party for dog,share the information about the event, and people can request to join.
