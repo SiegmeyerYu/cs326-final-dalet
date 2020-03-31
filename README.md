@@ -7,7 +7,7 @@ Github: z175886 <br><br>
 Name: Zhongdong Yu <br>
 Github: Zhongdong-Siege <br><br>
 Name: Zhou Xie <br>
-Github:
+Github: Cishard
 
 # Innovative Idea
 We plan to create a website specific about pets(cat, dog, hamsters...),help pet owners from all over the world share pet's moment and hold offline party.
