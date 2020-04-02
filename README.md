@@ -10,12 +10,15 @@ Name: Zhou Xie <br>
 Github: Cishard
 
 # Innovative Idea
-We plan to create a website specific about pets(cat, dog, hamsters...),help pet owners from all over the world share pet's moment and hold offline party.
+We plan to make a website for pet owners and pet-related practitioners, gathering the information of pet shops, hospitals, parties and any other service or activity, and providing filter, rating, and comment functions.
 
 # Important Components
-User can create a profile for the pets include image，pet's name, breed, age, living place.
+Users can write description and upload images on their profile.
 
-Pet owners can share their pets' moments by uploading short videos or images while other users can thumb up or leave a comment.
+For pet services, the practitioners posts their opening time, location, contact info, service type, and description, along with a link to their own website. 
 
-Helping pet owners to hold an offline party is the main purpose of the website. The party host first posts the time, location, contact info, pet species, and activity description, and then invites others to join. Users who are not invited can send request to the host. When a member joins, the website asks him/her to fill in his/her contact info and pet info, then update the info to the party.
+For pet-related activities, the host first posts the time, location, contact info, pet species, and activity description, and then invites others to join. Users who are not invited can send request to the host. When a member joins, the website asks him/her to fill in his/her contact info and pet info, then update the info to the website.
 
+The website provides filtering for consumers. For example, if a consumer want to have an American shorthair, he/she can filter by species (cat), service (cat shop), breed (American shorthair), then the website gives a list of cat shops having American shorthair on sale.
+
+The website also has rating and comment function.
