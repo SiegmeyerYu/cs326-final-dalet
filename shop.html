@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Pet Connection/shop</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Google icon-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <style>
+            body {
+                display:grid;
+                grid-template-columns: 75% 25%;
+                grid-template-rows: auto auto auto auto auto;
+                grid-template-areas: 
+                    "back right"
+                    "info right"
+                    "tags right"
+                    "pictures right"
+                    "comments right";
+            }
+            #left {
+                margin-left:300px;
+                margin-top:50px;
+                grid-template-rows: auto auto auto auto auto;
+                grid-template-areas: "back info tags pictures comments";
+            }
+            #right {
+                left:75%;
+                height:100vh;
+                position:fixed;
+                border-left: 2px solid gray;
+                padding-left:30px;
+                padding-top:100px;
+                grid-area:right;
+            }
+            button {
+                padding:10px;
+                background-color: purple;
+                color:white;
+                border:1px solid;
+                border-radius: 8px;
+                font-size:16pt;
+                margin-bottom:30px;
+                grid-area:back;
+            }
+            #info{
+                min-height:300px;
+                margin-bottom: 50px;
+            }
+            #shop_img {
+                float:left;
+                width:300px;
+                height:300px;
+                border:2px solid gray;
+                margin-left:150px;
+                margin-right:50px;
+            }
+            #overall_rating {
+                float:right;
+                margin-top:10px;
+                margin-right:20px;
+            }
+            .comment_rating{
+                float:right;
+                margin-top:10px;
+                margin-right:20px;
+            }
+            h1 {
+                margin-bottom:50px;
+            }
+            .subtitle {
+                margin-top:30px;
+                font-size:16pt;
+            }
+            #tags {
+                grid-area:tags;
+                margin-left:150px;
+                margin-bottom:50px;
+            }
+            .tag {
+                display:inline-block;
+                padding:10px;
+                border:2px solid purple;
+                color:purple;
+                border-radius:8px;
+                font-size:16pt;
+                margin:10px;
+            }
+            #pictures {
+                grid-area:pictures;
+                margin-left:150px;
+            }
+            .picture {
+                display:inline-block;
+                width:435px;
+                height:435px;
+                border:2px solid gray;
+                margin-right:30px;
+                margin-bottom:30px;
+            }
+            #comments {
+                grid-area:comments;
+                margin-left:150px;
+                margin-bottom:200px;
+                margin-right:70px;
+            }
+            .comment {
+                padding:10px;
+                border:2px solid gray;
+            }
+            .avatar {
+                float:left;
+                width:50px;
+                height:50px;
+                border-radius:50%;
+                border:3px solid black;
+                margin-right:20px;
+                margin-bottom:30px;
+                clear:left;
+            }
+            .username {
+                font-size:18pt;
+            }
+            .comment_text {
+                display:inline-block;
+                font-size:15pt;
+                width:800px;
+            }
+            #merchant_web {
+                padding:10px;
+                background-color: purple;
+                color:white;
+                border:1px solid;
+                border-radius: 8px;
+                font-size:16pt;
+                margin-bottom:80px;
+            }
+            .activity {
+                border:2px solid gray;
+                height:120px;
+            }
+            .act_img {
+                float:left;
+                width:116px;
+                height:116px;
+                margin-right:20px;
+                background-color:lightgray;
+                clear:left;
+            }
+            .act_name {
+                font-size:16pt;
+                margin-bottom:10px;
+            }
+            .material-icons.yellow {
+                font-size:30px;
+                color:rgb(255,204,0);
+            }
+            .material-icons.gray {
+                font-size:30px;
+                color:gray;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="left">
+            <button onclick="">Go Back</button>
+            <div id="info">
+                <img alt="shop" id="shop_img" src="">
+                <div id="overall_rating">
+                    <span class="material-icons yellow">grade</span>
+                    <span class="material-icons yellow">grade</span>
+                    <span class="material-icons yellow">grade</span>
+                    <span class="material-icons yellow">grade</span>
+                    <span class="material-icons gray">grade</span>
+                </div>
+                <h1>Shop Name</h1>
+                <p class="subtitle">Cattery</p>
+                <p class="subtitle">Open Hours: Workday 8:00 - 17:00</p>
+                <p class="subtitle">Location: Someplace</p>
+            </div>
+
+            <div id="tags">
+                <span class="tag"><strong>Cat</strong></span>
+                <span class="tag"><strong>American Shorthair</strong></span>
+                <span class="tag"><strong>Ragdoll</strong></span>
+            </div>
+
+            <div id="pictures">
+                <img alt="cat picture" src="" class="picture">
+                <img alt="cat picture" src="" class="picture">
+                <img alt="cat picture" src="" class="picture">
+                <img alt="cat picture" src="" class="picture">
+            </div>
+
+            <div id="comments">
+                <h2>Comments</h2>
+                <div class="comment">
+                    <img class="avatar" alt="AVT" src="./images/user_default.png">
+                    <div class="comment_rating">
+                        <span class="material-icons yellow">grade</span>
+                        <span class="material-icons yellow">grade</span>
+                        <span class="material-icons yellow">grade</span>
+                        <span class="material-icons yellow">grade</span>
+                        <span class="material-icons gray">grade</span>
+                    </div>
+                    <a href="" target="_blank" class="username">Username1</a>
+                    <p class="comment_text">blablabla blablabla blabla blablabla blabla bla blablabla blablabla blablabla blablabla blabla bla blablabla blablabla.</p>
+                </div>
+                <div class="comment">
+                    <img class="avatar" alt="AVT" src="./images/user_default.png">
+                    <div class="comment_rating">
+                        <span class="material-icons yellow">grade</span>
+                        <span class="material-icons yellow">grade</span>
+                        <span class="material-icons yellow">grade</span>
+                        <span class="material-icons gray">grade</span>
+                        <span class="material-icons gray">grade</span>
+                    </div>
+                    <a href="" target="_blank" class="username">Username1</a>
+                    <p class="comment_text">blablabla blablabla blabla blablabla blabla bla blablabla.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="right">
+            <h2>Contact</h2>
+            <p class="subtitle">Phone number: XXX-XXX-XXXX</p>
+            <p class="subtitle">Email Address: username@somemail.com</p>
+            <a href="" target="_blank"><p id="merchant_web">Visit Their Website</p></a>
+
+            <h2>Activity</h2>
+            <a href="" target="_blank">
+                <div class="activity">
+                    <img alt="activity image" src="" class="act_img">
+                    <p class="act_name">Activity Name</p>
+                    <p>Time: 8:00 - 17:00</p>
+                    <p>Date: April 1st</p>
+                </div>
+            </a>
+
+        </div>
+    </body>
+    <footer>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </footer>
+</html>
