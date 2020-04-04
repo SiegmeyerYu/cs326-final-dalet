@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Pet Connection/Activity</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <style>
+            body {
+                display: grid;
+                grid-template-columns: 50% 30% 20%;
+                grid-template-rows: 10% 90%;
+                grid-template-areas:
+                    "back back member"
+                    "image info member";
+            }
+            button {
+                padding:10px;
+                background-color: purple;
+                color:white;
+                border:1px solid;
+                border-radius: 8px;
+                font-size:16pt;
+            }
+            #back {
+                margin:50px 80px;
+                grid-area:back;
+            }
+            #join {
+                margin: 30px 0px;
+            }
+            #act_img {
+                float:left;
+                width:800px;
+                height:600px;
+                border:2px solid gray;
+                margin-left:100px;
+                grid-area:image;
+            }
+            .avatar {
+                float:left;
+                width:50px;
+                height:50px;
+                border-radius:50%;
+                border:3px solid black;
+                margin-bottom:30px;
+                clear:left;
+            }
+            #info {
+                grid-area:info;
+            }
+            #member {
+                padding-top:30px;
+                padding-left:30px;
+                border-left: 2px solid gray;
+                grid-area:member;
+            }
+            h1 {
+                margin-top:10px;
+                margin-bottom:100px;
+            }
+            h2 {
+                margin-bottom:50px;
+            }
+            .subtitle {
+                margin-top:30px;
+                font-size:18pt;
+            }
+            #description {
+                display:inline-block;
+                height:200px;
+                font-size: 15pt;
+            }
+            .member_text {
+                display:grid;
+                grid-template-columns: 70% 30%;
+                grid-template-areas:"username identity";
+                margin-bottom:30px;
+            }
+            .username{
+                padding-left:10px;
+                padding-top:5px;
+                font-size:15pt;
+                grid-area:username;
+            }
+            .identity{
+                padding-top:5px;
+                font-size:15pt;
+                grid-area:identity;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="left">
+            <button id="back" onclick="">Back to Shop</button>
+            <img alt="Activity Image" src="./images/corgi_pool_party.jpg" id="act_img">
+        </div>
+        <div id="info">
+            <h1>Corgi Pool Party</h1>
+            <p class="subtitle">Time: April 1st 13:00-15:00</p>
+            <p class="subtitle">Location: Some park</p>
+            <p class="subtitle">Host: Username1</p>
+            <p class="subtitle">Description:</p>
+            <div id="description">
+                <ul>
+                    <li>Bring your corgi!</li>
+                    <li>Free snacks and pizza!</li>
+                    <li>Enjoy the sunshine!</li>
+                </ul>
+                <p>&nbsp;&nbsp;Some other descriptions blabla blabla blabla blabla blabla blabla blabla</p></div>
+        </div>
+        <div id="member">
+            <button id="join" onclick="">Join!</button>
+            <h2>Member&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3</h2>
+            <i class="glyphicon glyphicon-user"></i>
+            <div id="username1">
+                <img class="avatar" alt="AVT" src="./images/user_default.png">
+                <div class="member_text">
+                    <a href="" class="username">Username1</a>
+                    <p class="identity">Host</p>
+                </div>
+            </div>
+            <div id="username2">
+                <img class="avatar" alt="AVT" src="./images/user_default.png">
+                <div class="member_text">
+                    <a href="" class="username">Username2</a>
+                    <p class="identity">Guest</p>
+                </div>
+            </div>
+            <div id="username3">
+                <img class="avatar" alt="AVT" src="./images/user_default.png">
+                <div class="member_text">
+                    <a href="" class="username">Username3</a>
+                    <p class="identity">Guest</p>
+                </div>
+            </div>
+        </div>
+
+    </body>
+    <footer>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </footer>
+</html>
