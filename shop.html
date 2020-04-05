@@ -45,6 +45,13 @@
                 margin-bottom:30px;
                 grid-area:back;
             }
+            button:hover {
+                background-color: rgb(140,3,252);
+            }
+            #edit {
+                margin-right:40px;
+                float:right;
+            }
             #info{
                 min-height:300px;
                 margin-bottom: 50px;
@@ -129,6 +136,7 @@
                 width:800px;
             }
             #merchant_web {
+                display:inline-block;
                 padding:10px;
                 background-color: purple;
                 color:white;
@@ -137,9 +145,25 @@
                 font-size:16pt;
                 margin-bottom:80px;
             }
-            .activity {
+            #merchant_web:hover {
+                background-color: rgb(140,3,252);
+                text-decoration:none;
+            }
+            .act_link {
+                display:block;
+                margin-top:30px;
+                color:black;
+            }
+            .act_link:hover {
+                text-decoration:none;
+            }
+            .act_block {
                 border:2px solid gray;
                 height:120px;
+                color:black;
+            }
+            .act_block:hover {
+                border-color:purple;
             }
             .act_img {
                 float:left;
@@ -161,11 +185,20 @@
                 font-size:30px;
                 color:gray;
             }
+            .material-icons.add {
+                margin-left:10px;
+                font-size:40px;
+                color:purple;
+            }
+            .material-icons.add:hover {
+                color: rgb(140,3,252);
+            }
         </style>
     </head>
     <body>
         <div id="left">
             <button onclick="">Go Back</button>
+            <button onclick="window.location.href = './shop_edit.html';" id="edit">Edit My Shop</button>
             <div id="info">
                 <img alt="shop" id="shop_img" src="">
                 <div id="overall_rating">
@@ -227,11 +260,15 @@
             <h2>Contact</h2>
             <p class="subtitle">Phone number: XXX-XXX-XXXX</p>
             <p class="subtitle">Email Address: username@somemail.com</p>
-            <a href="" target="_blank"><p id="merchant_web">Visit Their Website</p></a>
+            <a href="https://github.com/Zhongdong-Siege/cs326-final-dalet" target="_blank" id="merchant_web">Visit Their Website</a>
 
-            <h2>Activity</h2>
-            <a href="" target="_blank">
-                <div class="activity">
+            <br>
+            <h2 style="float:left;clear:left;">Activity</h2>
+            <a href="./activity_edit.html;"><span class="material-icons add">add_circle</span></a>
+
+            <br>
+            <a href="" target="_blank" class="act_link">
+                <div class="act_block">
                     <img alt="activity image" src="" class="act_img">
                     <p class="act_name">Activity Name</p>
                     <p>Time: 8:00 - 17:00</p>

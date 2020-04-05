@@ -12,7 +12,7 @@
                 grid-template-columns: 50% 30% 20%;
                 grid-template-rows: 10% 90%;
                 grid-template-areas:
-                    "back back member"
+                    "back edit member"
                     "image info member";
             }
             button {
@@ -23,12 +23,21 @@
                 border-radius: 8px;
                 font-size:16pt;
             }
+            button:hover {
+                background-color: rgb(140,3,252);
+            }
             #back {
                 margin:50px 80px;
                 grid-area:back;
             }
+            #edit_button {
+                margin:50px 80px;
+                grid-area:edit;
+                float:right;
+            }
             #join {
-                margin: 30px 0px;
+                margin-top:20px;
+                margin-bottom:40px;
             }
             #act_img {
                 float:left;
@@ -92,9 +101,12 @@
         </style>
     </head>
     <body>
-        <div id="left">
+        <div>
             <button id="back" onclick="">Back to Shop</button>
             <img alt="Activity Image" src="./images/corgi_pool_party.jpg" id="act_img">
+        </div>
+        <div id="edit">
+            <button id="edit_button" onclick="window.location.href = './activity_edit.html';">Edit Activity</button>
         </div>
         <div id="info">
             <h1>Corgi Pool Party</h1>
@@ -113,7 +125,6 @@
         <div id="member">
             <button id="join" onclick="">Join!</button>
             <h2>Member&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3</h2>
-            <i class="glyphicon glyphicon-user"></i>
             <div id="username1">
                 <img class="avatar" alt="AVT" src="./images/user_default.png">
                 <div class="member_text">
@@ -136,7 +147,6 @@
                 </div>
             </div>
         </div>
-
     </body>
     <footer>
         <!-- Optional JavaScript -->
