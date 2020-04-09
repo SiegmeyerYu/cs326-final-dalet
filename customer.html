@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <style>
+     #page {
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: 30% 70% ;
+        grid-template-rows: 80px auto auto auto;
+        grid-template-areas: "head head" "search  search" "filter  result" "filter result ";
+    }
+    #page > header {
+        grid-area: head;
+        background-color: black;
+    }
+    
+    #page > search {
+        grid-area: search;
+        padding: 30px;
+    }
+    
+    #page > filter {
+        grid-area: filter;
+        padding:10px;
+        background-color: #BEEDC7;
+        background-size: 50% 50%;
+    }
+    
+    #page > result {
+        grid-area: result;
+       
+        padding:10px;
+        background-color: lightcoral;
+    }
+    #page > contact {
+        grid-area: contact;
+        background-color: black;
+    }
+    button {
+        padding: 10px;
+        background-color: purple;
+        color: white;
+        border: 1px solid;
+        border-radius: 8px;
+        font-size: 16pt;
+        width: 120px;
+    } 
+    header button {
+        float: right;
+        margin-top: 20px;
+        margin-right: 10px;
+    }
+    
+    #loginBtn {
+        margin-right: 60px;
+    }
+    #homeBtn{
+        float:left;
+    }
+
+    .form-control{
+ border: 1px solid purple;
+  box-shadow: 0 0 0 1px purple;
+  font-size: 20px;   
+ height:30px;
+    }
+    select{
+        border: 1px solid purple;
+  box-shadow: 0 0 0 1px purple;
+  font-size: 20px;   
+ height:30px;
+        width:60px;
+    }
+    .search-bar{
+        margin-left: 40%;
+    }
+    .checked {
+        color:purple;
+    }
+    .starRateFilter label{
+        color: black;
+        font-size: 30px;
+       
+    }
+    filter button{
+    background: transparent;
+    border-color: transparent;    
+    width:auto;
+    color: grey;
+    }
+
+result label{
+    color: black;
+    font-size: 40px; 
+}
+.info{
+ float:right;
+
+}
+.stores{
+    display:block;
+}
+
+        </style>
+        <body>
+            <section id ="page">
+                <header><button id="homeBtn"onclick="window.location.href = './homepage.html';">Home</button>
+                    <button id="signupBtn" onclick="window.location.href = './sign_up.html';">Sign up</button>
+                    <button id="loginBtn" onclick="window.location.href = './log_in.html';">Log in</button>
+                </header>
+<search>
+<!-- Search form -->
+
+<div class="search-bar">
+    <select name="cities">
+        <option value="N/A">city</option>
+        <option value="Amherst">Amherst</option>
+        <option value="Worcester">Worcester</option>
+        <option value="Franklin">Franklin</option>
+        <option value="Hamshire">Hamshire</option>
+        <option value="Berkshire">Berkshire</option>
+        <option value="Boston">Boston</option>
+    </select>
+    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+    <button id="submit"type="submit">Search</button>
+</div>
+</search>
+<filter>
+    <section class="starRateFilter">
+        <label>Avg.Customer Review<label>
+    <div>
+        <button name="Rating" value="0">Reset</button>
+    </div> 
+    <div>
+        <button name="Rating" value="4starup"><span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>&up</button>
+    </div>
+    <div></div>
+    <div>
+        <button name="Rating" value="3starup"><span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>&up</button>
+    </div>
+    <div>
+        <button  name="Rating" value="2starup"><span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>&up</button>
+    </div>
+    <div>
+        <button name="Rating" value="1starup"><span class="fa fa-star checked"></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star"></span>&up</button>
+    </div>
+
+    </section>
+</filter>
+<result>
+<label>Result</label>
+
+    <div class="stores">
+        <img alt="store" src="./images/cat-example.jpg">
+        <div class="info">
+        <div><span>store name</span> </div>
+        <div><span>feature</span></div>
+        <div><span>phone number</span></div>
+        <div><span>address</span></div>
+    </div>
+ 
+    </div>
+
+    <div class="stores">
+        <img alt="store" src="./images/dog-example.jpg">
+        <div class="info">
+        <div><span>store name</span> </div>
+        <div><span>feature</span></div>
+        <div><span>phone number</span></div>
+        <div><span>address</span></div>
+    </div>
+   </div>
+ 
+</result>
+        
+        
+        
+            </section>
+        </body>
+        </html>

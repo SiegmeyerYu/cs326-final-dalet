@@ -25,7 +25,7 @@
     #page {
         max-width: 100%;
         display: grid;
-        grid-template-columns: 60% 40%;
+        grid-template-columns: 30% 70%;
         grid-template-rows: 80px 60% 450px 550px;
         grid-template-areas: "head head" "main  main" "left  right" "left right";
     }
@@ -48,6 +48,7 @@
     
     #page > right {
         grid-area: right;
+        padding:30px;
         background-color: lightcoral;
     }
     
@@ -98,25 +99,51 @@
     #customerBtn {
         margin-left: 70%;
     }
+    right img{
+        width:640px;
+        height:450px;
+    }
+    #rightTitle{
+        font-size: 40px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    }
+    right label{
+        font-size: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .activity{
+        padding:20px;
+        border :thick solid #00000F;
+    }
 </style>
 
 <body>
     <section id="page">
 
         <header>
-            <button id="signupBtn" onclick="">Sign up</button>
-            <button id="loginBtn" onclick="">Log in</button>
+            <button id="signupBtn"onclick="window.location.href = './sign_up.html';">Sign up</button>
+            <button id="loginBtn" onclick="window.location.href = './log_in.html';">Log in</button>
         </header>
 
         <main>
-            <label>Pets Connection</label>
-            <button id="merchantBtn" onclick="">I am a merchant</button>
-            <button id="customerBtn" onclick="">I am a customer</button>
+            <label>Pet Connection</label>
+            <button id="merchantBtn" onclick="window.location.href = './shop_edit.html';">I am a merchant</button>
+            <button id="customerBtn" onclick="window.location.href = './customer.html';">I am a customer</button>
             <img alt="mainpage_picture" src="./images/mainpage_picture.jpg">
 
         </main>
-        <left>Store</left>
-        <right>Store</right>
+        <left>Store showcase</left>
+        <right>
+            <div class=activity>
+            <label id="rightTitle">pet activity showcase</label>
+            <label>
+            <div>latest event:</div>
+            <div>corgi pool party</div>
+            </label>
+            <div><img alt="event" src=./images/corgi_pool_party.jpg>
+            </div>
+        </right>
 
     </section>
 
