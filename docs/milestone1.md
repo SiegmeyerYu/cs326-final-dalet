@@ -14,34 +14,63 @@ The website also has rating and comment function.<br>
 
 # Wireframes
 
-Homepage<br>
+**Homepage**<br>
 
 ![alt home](./images/home.png)
 
-Log in<br>
+**Log in**<br>
 
 ![alt log in](./images/log_in.png)
 
-Sign up<br>
+**Sign up**<br>
 
 ![alt sign up](./images/sign_up.png)
 
-Personal profile<br>
+**Personal profile**<br>
 
 ![alt profile](./images/profile.png)
 
-Consumer view<br>
+**Consumer view**<br>
 
 ![alt consumer view](./images/consumer.png)
 
-Shop page<br>
+**Shop page**<br>
 
 ![alt shop page](./images/shop_view.png)
 
-Shop editting<br>
+**Shop editting**<br>
 
 ![alt shop edit](./images/shop_edit.png)
 
-Activity<br>
+**Activity**<br>
 
 ![alt activity](./images/activity.png)
+
+
+#HTML Screenshot
+
+**This part is done by Chuyang Zhong**<br>
+**Homepage**<br>
+![alt homepage](./images/&homepage_1.png)
+![alt homepage](./images/&homepage_2.png)
+
+**This part is done by Zhongdong Yu**<br>
+**Log In**<br>
+![alt log in](./images/&log_in.png)
+
+**Sign up**<br>
+![alt sign up](./images/&sign_up.png)
+
+**shop page**<br>
+![alt shop](./images/&shop_1.png)
+![alt shop](./images/&shop_2.png)
+
+**shop editting page**<br>
+![alt shop edit](./images/&shop_edit_1.png)
+![alt shop edit](./images/&shop_edit_2.png)
+
+**activity page**<br>
+![alt activity](./images/&activity.png)
+
+**activity editting page**<br>
+![alt activity edit](./images/&activity_edit.png)
