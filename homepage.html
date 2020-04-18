@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+<style>
+    button {
+        padding: 10px;
+        background-color: purple;
+        color: white;
+        border: 1px solid;
+        border-radius: 8px;
+        font-size: 16pt;
+        width: 120px;
+    }
+    
+    #picture {
+        top: 100px;
+        height: 90%;
+        width: 100%;
+    }
+    
+    #page {
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: 30% 70%;
+        grid-template-rows: 80px 60% 450px 550px;
+        grid-template-areas: "head head" "main  main" "left  right" "left right";
+    }
+    
+    #page > header {
+        grid-area: head;
+        background-color: black;
+    }
+    
+    #page > left {
+        grid-area: left;
+        background-color: orange;
+    }
+    
+    #page > main {
+        grid-area: main;
+        background-color: black;
+        background-size: 50% 50%;
+    }
+    
+    #page > right {
+        grid-area: right;
+        padding:30px;
+        background-color: lightcoral;
+    }
+    
+    header button {
+        float: right;
+        margin-top: 20px;
+        margin-right: 10px;
+    }
+    
+    #loginBtn {
+        margin-right: 60px;
+    }
+    
+    main button {
+        position: fixed;
+        height: 15%;
+        width: 20%;
+        min-width: 200px;
+        min-height: 150px;
+        margin: auto;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        bottom: 0;
+        right: 50%;
+        font-size: 30px;
+        font-weight: bold;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        border:3px solid;
+    }
+    
+    main img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    main label {
+        position: absolute;
+        top: 30%;
+        margin-left: 40%;
+        display: inline-block;
+        font-size: 100px;
+        color: blanchedalmond;
+       
+    }
+    
+    #customerBtn {
+        margin-left: 70%;
+    }
+    right img{
+        width:640px;
+        height:450px;
+    }
+    #rightTitle{
+        font-size: 40px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    }
+    right label{
+        font-size: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .activity{
+        padding:20px;
+        border :thick solid #00000F;
+    }
+</style>
+
+<body>
+    <section id="page">
+
+        <header>
+            <button id="signupBtn"onclick="window.location.href = './sign_up.html';">Sign up</button>
+            <button id="loginBtn" onclick="window.location.href = './log_in.html';">Log in</button>
+        </header>
+
+        <main>
+            <label>Pet Connection</label>
+            <button id="merchantBtn" onclick="window.location.href = './shop_edit.html';">I am a merchant</button>
+            <button id="customerBtn" onclick="window.location.href = './customer.html';">I am a customer</button>
+            <img alt="mainpage_picture" src="./images/mainpage_picture.jpg">
+
+        </main>
+        <left>Store showcase</left>
+        <right>
+            <div class=activity>
+            <label id="rightTitle">pet activity showcase</label>
+            <label>
+            <div>latest event:</div>
+            <div>corgi pool party</div>
+            </label>
+            <div><img alt="event" src=./images/corgi_pool_party.jpg>
+            </div>
+        </right>
+
+    </section>
+
+</body>
+
+</html>
