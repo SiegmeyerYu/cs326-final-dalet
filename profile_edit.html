@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Pet Connection/profile edit</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <style>
+            body {
+                text-align:center;
+            }
+            h1 {
+                color:purple;
+                font-weight:bold;
+                margin-top:100px;
+                margin-bottom:50px;
+            }
+            #form {
+                padding:50px;
+                width:800px;
+                display:inline-block;
+                text-align:left;
+                border:5px solid purple;
+                border-radius:10px;
+            }
+            #signup {
+                padding:10px;
+                background-color:purple;
+                color:white;
+                border:1px solid;
+                border-radius: 8px;
+                font-size:16pt;
+                margin:50px auto;
+                display:block;
+            }
+            #signup:hover {
+                background-color: rgb(140,3,252);
+                color:white;
+                text-decoration:none;
+            }
+            .adjust {
+                margin-top:10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>PET CONNECTION</h1>
+        <form action="https://wp.zybooks.com/form-viewer.php" target="_blank" method="POST" id="form">
+            <div class="form-group row">
+                <label for="alias" class="col-sm-4 col-form-label-lg">Alias:</label>
+                <div class="col-sm-8">
+                    <input type="text" id="alias" class="form-control" name="alias" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="location" class="col-sm-4 col-form-label-lg">Location:</label>
+                <div class="col-sm-8">
+                    <input type="text" id="location" class="form-control" name="location" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="portrait" class="col-sm-4 col-form-label-lg">Portrait:</label>
+                <div class="col-sm-8">
+                    <input type="file" id="portrait" class="adjust" name="portrait">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="description" class="col-sm-4 col-form-label-lg">Description:</label>
+                <div class="col-sm-8">
+                    <textarea id="description" class="form-control" name="description" rows="6" maxlength="200"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="pet1n" class="col-sm-4 col-form-label-lg">Pet1 Name:</label>
+                <div class="col-sm-8">
+                    <input type="text" id="pet1n" class="form-control" name="pet1_name">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="pet1i" class="col-sm-4 col-form-label-lg">Pet1 Image:</label>
+                <div class="col-sm-8">
+                    <input type="file" id="pet1i" class="adjust" name="pet1_image">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="pet2n" class="col-sm-4 col-form-label-lg">Pet2 Name:</label>
+                <div class="col-sm-8">
+                    <input type="text" id="pet2n" class="form-control" name="pet2_name">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="pet2i" class="col-sm-4 col-form-label-lg">Pet2 Image:</label>
+                <div class="col-sm-8">
+                    <input type="file" id="pet2i" class="adjust" name="pet2_image">
+                </div>
+            </div>
+
+
+            <input type="submit" value="Sign Up" id="signup">
+            <a href="./profile_edit.html" id="cancel" class="click">Cancel</a>
+        </form>
+    </body>
+    <footer>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </footer>
+</html>
