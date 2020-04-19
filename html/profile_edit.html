@@ -24,20 +24,22 @@
                 border:5px solid purple;
                 border-radius:10px;
             }
-            #signup {
+            .button {
                 padding:10px;
                 background-color:purple;
                 color:white;
                 border:1px solid;
                 border-radius: 8px;
                 font-size:16pt;
-                margin:50px auto;
-                display:block;
+                margin-top:50px 30px;
             }
-            #signup:hover {
+            .button:hover {
                 background-color: rgb(140,3,252);
                 color:white;
                 text-decoration:none;
+            }
+            #cancel {
+                float:right;
             }
             .adjust {
                 margin-top:10px;
@@ -104,8 +106,8 @@
             </div>
 
 
-            <input type="submit" value="Sign Up" id="signup">
-            <a href="./profile_edit.html" id="cancel" class="click">Cancel</a>
+            <input type="submit" value="Save changes" id="submit" class="button">
+            <a href="./profile_edit.html" id="cancel" class="button">Cancel</a>
         </form>
     </body>
     <footer>
