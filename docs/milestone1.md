@@ -54,6 +54,10 @@ The website also has rating and comment function.<br>
 ![alt homepage](./images/&homepage_1.png)
 ![alt homepage](./images/&homepage_2.png)
 
+**Consumer View**<br>
+![alt consumer view](./images/&consumer.jpg)
+
+<br><br>
 **This part is done by Zhongdong Yu**<br>
 **Log In**<br>
 ![alt log in](./images/&log_in.png)
@@ -74,3 +78,10 @@ The website also has rating and comment function.<br>
 
 **activity editting page**<br>
 ![alt activity edit](./images/&activity_edit.png)
+
+**personal profile**<br>
+![alt personal profile](./images/&profile_1.png)
+![alt personal profile](./images/&profile_2.png)
+
+**profile editting page**<br>
+![alt profile edit](./images/&profile_edit.png)

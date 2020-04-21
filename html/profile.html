@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Pet Connection/personal profile</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <style>
+            body {
+                display:grid;
+                grid-template-columns: 30% 40% 30%;
+                grid-template-areas: 
+                    "left person right"
+                    "left pet right"
+                    "left shop right"
+                    "left activity right";
+            }
+            #left {
+                grid-area: left;
+            }
+            button {
+                padding:10px;
+                background-color: purple;
+                color:white;
+                border:1px solid;
+                border-radius: 8px;
+                font-size:16pt;
+            }
+            button:hover {
+                background-color: rgb(140,3,252);
+            }
+            #back {
+                margin-top:30px;
+                margin-right:80px;
+                float:right;
+            }
+            #edit {
+                float:right;
+            }
+            #person {
+                grid-area: person;
+                margin-top:100px;
+                margin-bottom:50px;
+            }
+            #portrait {
+                float:left;
+                width:250px;
+                height:250px;
+                border: 1px solid gray;
+                margin-right:30px;
+            }
+            #alias {
+                margin-top:20px;
+                margin-bottom:10px;
+            }
+            #description {
+                margin-top:20px;
+            }
+            #pet {
+                grid-area: pet;
+                text-align: center;
+                margin:50px 0px;
+            }
+            .pet_image {
+                display:block;
+                height: 500px;
+                border: 1px solid gray;
+            }
+            #shop {
+                grid-area: shop;
+                text-align: center;
+                margin:50px 0px;
+            }
+            .shop_link {
+                display:block;
+                text-align:left;
+                margin-top:30px;
+                color:black;
+            }
+            .shop_link:hover {
+                text-decoration:none;
+            }
+            .shop_block {
+                border:1px solid gray;
+                height:120px;
+                color:black;
+            }
+            .shop_block:hover {
+                border-color:purple;
+            }
+            .shop_img {
+                float:left;
+                width:118px;
+                height:118px;
+                margin-right:20px;
+                background-color:lightgray;
+                clear:left;
+            }
+            .shop_name {
+                font-size:16pt;
+                margin-bottom:10px;
+            }
+            #activity {
+                grid-area: activity;
+                text-align: center;
+                margin:50px 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="left">
+            <button onclick="" id="back">Go Back</button>
+        </div>
+
+        <div id="person">
+            <img alt="portrait" src="./images/user_default.png" id="portrait">
+            <button onclick="window.location.href = './profile_edit.html';" id="edit">Edit Profile</button>
+            <h2>Alias</h2>
+            <p>Location</p>
+            <div id="description">
+                <p>Description:</p>
+                <p><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>blablabbalblabal balba lbaabl lablablabalbalabalba blablbalbl balbalabl balb lab lblablablblabl</p>
+            </div>
+        </div>
+
+        <div id="pet">
+            <h2 class="petname">Pet Name</h2>
+            <img class="pet_image" alt="pet image" src="">
+        </div>
+
+        <div id="shop">
+            <h2>Shop</h2>
+            <a href="" target="_blank" class="shop_link">
+                <div class="shop_block">
+                    <img alt="shop image" src="" class="shop_img">
+                    <p class="shop_name">Shop Name</p>
+                    <p>Feature/Type</p>
+                    <p>Address</p>
+                </div>
+            </a>
+        </div>
+
+        <div id="activity">
+            <h2>Activity</h2>
+            <a href="" target="_blank" class="shop_link">
+                <div class="shop_block">
+                    <img alt="activity image" src="" class="shop_img">
+                    <p class="shop_name">Activity Name</p>
+                    <p>Time: 8:00 - 17:00</p>
+                    <p>Date: April 1st</p>
+                </div>
+            </a>
+        </div>
+    </body>
+    <footer>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </footer>
+</html>
