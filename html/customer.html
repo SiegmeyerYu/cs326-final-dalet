@@ -25,7 +25,6 @@
     #page > filter {
         grid-area: filter;
         padding:10px;
-        background-color: #BEEDC7;
         background-size: 50% 50%;
     }
     
@@ -68,11 +67,11 @@
  height:30px;
     }
     select{
+        width:150px;
         border: 1px solid purple;
   box-shadow: 0 0 0 1px purple;
   font-size: 20px;   
- height:30px;
-        width:60px;
+ height:34px;
     }
     .search-bar{
         margin-left: 40%;
@@ -105,20 +104,19 @@ result label{
     display:block;
 }
 
-
-        </style>
-        <body>
-            <section id ="page">
-                <header><button id="homeBtn"onclick="window.location.href = './homepage.html';">Home</button>
-                    <button id="signupBtn" onclick="window.location.href = './sign_up.html';">Sign up</button>
-                    <button id="loginBtn" onclick="window.location.href = './log_in.html';">Log in</button>
-                </header>
+</style>
+ <body>
+    <section id ="page">
+     <header><button id="homeBtn"onclick="window.location.href = './homepage.html';">Home</button>
+     <button id="signupBtn" onclick="window.location.href = './sign_up.html';">Sign up</button>
+    <button id="loginBtn" onclick="window.location.href = './log_in.html';">Log in</button>
+    </header>
 <search>
 <!-- Search form -->
 
 <div class="search-bar">
-    <select name="cities">
-        <option value="N/A">city</option>
+    <select name="cities" id="dropdown_city">
+        <option value="N/A">City</option>
         <option value="Amherst">Amherst</option>
         <option value="Worcester">Worcester</option>
         <option value="Franklin">Franklin</option>
