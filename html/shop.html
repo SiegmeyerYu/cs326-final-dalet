@@ -197,7 +197,7 @@
     </head>
     <body>
         <div id="left">
-            <button onclick="">Go Back</button>
+            <button onclick="window.location.href = './customer.html';">Go Back</button>
             <button onclick="window.location.href = './shop_edit.html';" id="edit">Edit My Shop</button>
             <div id="info">
                 <img alt="shop" id="shop_img" src="">
@@ -254,6 +254,12 @@
                     <p class="comment_text">blablabla blablabla blabla blablabla blabla bla blablabla.</p>
                 </div>
             </div>
+
+            <!-- Output -->
+            <div>
+                <p id="output"></p>
+            </div>
+
         </div>
 
         <div id="right">
@@ -275,7 +281,6 @@
                     <p>Date: April 1st</p>
                 </div>
             </a>
-
         </div>
     </body>
     <footer>
@@ -284,5 +289,21 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="client.js"></script>
+        <script>
+            const init = function(e) {
+            let result = localStorage.getItem('result');
+            let shop_name = localStorage.getItem('shop_name');
+            if (result === "succeed") {
+	            document.getElementById("output").innerHTML = "101: <b> shop " + shop_name + " edited successfully.</b>";
+            } 
+            else if (result === "fail") {
+	            document.getElementById("output").innerHTML = "100: <b> shop " + shop_name + " not found.</b>";
+            }
+            localStorage.removeItem('result');
+            localStorage.removeItem('shop_name');
+            }
+            document.addEventListener('DOMContentLoaded', function(){init();});
+        </script>
     </footer>
 </html>
