@@ -89,7 +89,6 @@ function counterShopRead() {
 		let shop_id; // NEED FIX
 		const data = {'shop_id' : shop_id};
 		const newURL = url + "/shop";
-		localStorage.setItem('result', 'cancelled');
 		console.log("counterLogin: fetching " + newURL);
 		const resp = await postData(newURL, data);
 		const j = await resp.json();
@@ -168,7 +167,6 @@ function counterProfileRead() {
 		let username; // NEED FIX
 		const data = {'username' : username};
 		const newURL = url + "/profile";
-		localStorage.setItem('result', 'cancelled');
 		console.log("counterLogin: fetching " + newURL);
 		const resp = await postData(newURL, data);
 		const j = await resp.json();
@@ -231,75 +229,74 @@ function counterShopDelete() {
 		})();
 }
 
+function counterActivityCancel() {
+	(async () => {
+		// set data in local storage
+		localStorage.setItem('activity_edit_result', 'cancelled');
+		// redirection
+		window.document.location = "./shop.html";
+		})();
+}
 
-
-/*
-function counterCreate() {
-    (async () => {
-		let counterName = document.getElementById("countername").value;
-		let userName = document.getElementById("username").value;
-		const data = {'name' : counterName};
-		const newURL = url + "/users/" + userName +"/create";
-		console.log("counterCreate: fetching " + newURL);
+function counterActivityRead() {
+	(async () => {
+		let act_id; // NEED FIX
+		const data = {'act_id' : act_id};
+		const newURL = url + "/activity";
+		console.log("counterLogin: fetching " + newURL);
 		const resp = await postData(newURL, data);
 		const j = await resp.json();
+		let result = 'fail';
 		if (j['result'] !== 'error') {
-	    	document.getElementById("output").innerHTML = "101: <b>" + userName + ", " + counterName + " created.</b>";
-		} else {
-	    	document.getElementById("output").innerHTML = "100: " + userName + ", " + counterName + " not found.</b>";
+			result = 'succeed';
 		}
-	})();
+		localStorage.setItem('result', 'succeed'); // NEED FIX
+		})();
 }
 
-function counterRead() {
-    (async () => {
-		let counterName = document.getElementById("countername").value;
-		let userName = document.getElementById("username").value;
-		const data = {'name' : counterName};
-		const newURL = url + "/users/" + userName + "/read";
-		console.log("counterRead: fetching " + newURL);
+function counterActivityEdit() {
+	(async () => {
+		let act_id; // NEED FIX
+		let act_name = document.getElementById("act name").value;
+		let picture = document.getElementById("picture").value;
+		let open_hour = document.getElementById("open hours").value;
+		let address = document.getElementById("address").value;
+		let phone = document.getElementById("phone").value;
+		let email = document.getElementById("email").value;
+		const data = {'act_id':act_id, 'act_name':act_name, 'picture':picture, 'open_hour':open_hour, 'address':address, 'phone':phone, 'email':email};
+		const newURL = url + "/activity_edit";
+		console.log("counterLogin: fetching " + newURL);
+		// post data to database
 		const resp = await postData(newURL, data);
 		const j = await resp.json();
+		let result = 'fail';
 		if (j['result'] !== 'error') {
-	    	document.getElementById("output").innerHTML = "201: <b>"  + userName + ", " + counterName + " value = " + j['value'] + "</b>";
-		} else {
-	    	document.getElementById("output").innerHTML = "200: " +  userName + ", " + counterName + " not found.</b>";
-		}	    
-    })();
+			result = 'succeed';
+		}
+		localStorage.setItem('activity_edit_result', 'succeed'); // NEED FIX
+		localStorage.setItem('act_name', act_name);  
+		})();
 }
 
-function counterUpdate() {
-    (async () => {
-	let counterName = document.getElementById("countername").value;
-	let userName = document.getElementById("username").value;
-	let counterValue = document.getElementById("countervalue").value;
-	const data = {'name' : counterName, 'value' : counterValue};
-	const newURL = url + "/users/" + userName + "/update";
-	console.log("counterUpdate: fetching " + newURL);
-	const resp = await postData(newURL, data);
-	const j = await resp.json();
-	if (j['result'] !== 'error') {
-	    document.getElementById("output").innerHTML = "301: <b>" + userName + ", " + counterName + " value = " + j['value'] + "</b>";
-	} else {
-	    document.getElementById("output").innerHTML = "300: " + userName + ", " + counterName + " not found.";
-	}	    
-    })();
+function counterActivityDelete() {
+	(async () => {
+		let username; // NEED FIX
+		const data = {'username':username};
+		const newURL = url + "/activity_delete";
+		console.log("counterLogin: fetching " + newURL);
+		// post data to database
+		const resp = await postData(newURL, data);
+		const j = await resp.json();
+		let result = 'fail';
+		if (j['result'] !== 'error') {
+			result = 'succeed';
+		}
+		// set data in local storage
+		localStorage.setItem('activity_delete_result', 'succeed');// NEED FIX
+		// redirection
+		window.document.location = "./shop.html";   
+		})();
 }
 
-function counterDelete() {
-    (async () => {
-	let counterName = document.getElementById("countername").value;
-	let userName = document.getElementById("username").value;
-	const data = {'name' : counterName};
-	const newURL = url + "/users/" + userName + "/delete";
-	console.log("counterDelete: fetching " + newURL);
-	const resp = await postData(newURL, data);
-	const j = await resp.json();
-	if (j['result'] !== 'error') {
-	    document.getElementById("output").innerHTML = "401: <b>" + userName + ", " + counterName + " deleted.</b>";
-	} else {
-	    document.getElementById("output").innerHTML = "400: " + userName + ", " + counterName + " not found.</b>";
-	}	    
-	})();
-}
-*/
+
+
