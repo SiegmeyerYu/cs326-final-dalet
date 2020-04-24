@@ -182,24 +182,24 @@
         <script>
             const init = function(e) {
                 let result = localStorage.getItem('profile_edit_result');
-                let username = localStorage.getItem('username');
+                let alias = localStorage.getItem('alias');
                 if (result === "succeed") {
-                    document.getElementById("output").innerHTML = "101: <b>" + username + "\'s profile edited successfully.</b>";
+                    document.getElementById("output").innerHTML = "101: <b>" + alias + "\'s profile edited successfully.</b>";
                 } 
                 else if (result === "fail") {
-                    document.getElementById("output").innerHTML = "100: " + username + " not found.</b>";
+                    document.getElementById("output").innerHTML = "100: " + alias + " not found.</b>";
                 }
                 localStorage.removeItem('profile_edit_result');
 
                 result = localStorage.getItem('shop_delete_result');
                 if (result === "succeed") {
-                    document.getElementById("output").innerHTML = "201: <b>" + username + "\'s shop is deleted successfully.</b>";
+                    document.getElementById("output").innerHTML = "201: <b>" + alias + "\'s shop is deleted successfully.</b>";
                 } 
                 else if (result === "fail") {
-                    document.getElementById("output").innerHTML = "200: " + username + " not found.</b>";
+                    document.getElementById("output").innerHTML = "200: " + alias + " not found.</b>";
                 }
                 localStorage.removeItem('shop_delete_result');
-                localStorage.removeItem('username');
+                localStorage.removeItem('alias');
             }
             document.addEventListener('DOMContentLoaded', function(){init();});
         </script>
