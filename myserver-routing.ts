@@ -1,3 +1,5 @@
+import { promises } from "dns";
+
 let http = require('http');
 let url = require('url');
 let express = require('express');
@@ -47,6 +49,8 @@ export class MyServer {
 	this.router.get('/act_join', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
 	this.router.get('/act_quit', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
 
+	this.router.post('/search',[this.shopNotFoundHandler.bind(this),this.viewSearchResultHandler.bind(this)])
+
 	// Set a fall-through handler if nothing matches.
 	this.router.post('*', async (request, response) => {
 	    response.send(JSON.stringify({ "result" : "command-not-found" }));
@@ -65,7 +69,20 @@ export class MyServer {
 
 	private async toBeDefined(request, response) : Promise<void> {
 	}
+	//for customer.html searchbar
+	private async viewSearchResultHandler(request,response,next):Promise<void>{
+		let keyword=request.body.shopname;
+		let shoptype=request.body.shoptype;
+		let shop = await this.theDatabase.serach_shop(keyword,shoptype);
+		response.write(JSON.stringify({'result' : 'view shop',
+		'name' : shop.name,
+		'type' : shop.type,
+		'address' : shop.address,
+		'phone' : shop.phone,
+		'logo' : shop.logo_src,
+		'rate' : shop.rate, }));
 
+	}
 	private async userNotFoundHandler(request, response, next) : Promise<void> {
 		let username = request.body.username;
 		let value : boolean = await this.theDatabase.isFound_user(username);
@@ -267,6 +284,8 @@ export class MyServer {
 		await this.theDatabase.put_shop_comment(shopID, comments);
 		response.write(JSON.stringify({'result' : 'new comment added', 'comment' : comments}));
 	}
+
+
 
 	/*
 

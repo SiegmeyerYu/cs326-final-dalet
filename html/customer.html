@@ -4,6 +4,7 @@
         <meta charset="UTF-8"> 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
+    <script src="../client.js"></script>
     <style>
      #page {
         max-width: 100%;
@@ -115,27 +116,27 @@ result label{
 <!-- Search form -->
 
 <div class="search-bar">
-    <select name="cities" id="dropdown_city">
-        <option value="N/A">City</option>
-        <option value="Amherst">Amherst</option>
-        <option value="Worcester">Worcester</option>
-        <option value="Franklin">Franklin</option>
-        <option value="Hamshire">Hamshire</option>
-        <option value="Berkshire">Berkshire</option>
-        <option value="Boston">Boston</option>
+    <select name="types" id="dropdown_type">
+        <option value="N/A">Types</option>
+        <option value="cattery">Cattery</option>
+        <option value="kennel">Kennel</option>
+        <option value="toy">Toy</option>
+        <option value="hospital">Hospital</option>
+   
     </select>
-    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-    <button id="submit"type="submit">Search</button>
+    <input class="form-control" id="keyword"type="text" placeholder="Search" aria-label="Search">
+    <button id="submit" onclick="searchShop()" type="submit">Search</button>
 </div>
 </search>
 <filter>
-    <section class="starRateFilter">
+    <section class="starRateFilter" >
         <label>Avg.Customer Review<label>
     <div>
-        <button name="Rating" value="0">Reset</button>
+        <button name="Rating" id="starRate"  onclick="starnumber()"value="0">Reset</button>
     </div> 
     <div>
-        <button name="Rating" value="4starup"><span class="fa fa-star checked"></span>
+        <button name="Rating"  id="starRate"  onclick="starnumber()" value="4">
+        <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
@@ -143,21 +144,24 @@ result label{
     </div>
     <div></div>
     <div>
-        <button name="Rating" value="3starup"><span class="fa fa-star checked"></span>
+        <button name="Rating" id="starRate"  onclick="starnumber()" value="3" >
+        <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star"></span>
         <span class="fa fa-star"></span>&up</button>
     </div>
     <div>
-        <button  name="Rating" value="2starup"><span class="fa fa-star checked"></span>
+        <button  name="Rating"id="starRate"  onclick="starnumber()" value="2">
+        <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star"></span>
         <span class="fa fa-star"></span>
         <span class="fa fa-star"></span>&up</button>
     </div>
     <div>
-        <button name="Rating" value="1starup"><span class="fa fa-star checked"></span>
+        <button name="Rating" id="starRate"  onclick="starnumber()" value="1">
+        <span class="fa fa-star checked"></span>
         <span class="fa fa-star "></span>
         <span class="fa fa-star "></span>
         <span class="fa fa-star "></span>
@@ -172,11 +176,11 @@ result label{
     <div class="stores">
         <img alt="store" src="./images/cat-example.jpg">
         <div class="info">
-            <div> <span>store name</span>  <div>
-                <div> <span>feature:abcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefg</span></div>
-                    <div> <span>phone number<span> <div>
-                        <div> <span>address</span></div>
-                        <div class="button"><button name="choice" value="first_result">Select</div>
+        <div> <span>store name</span>  <div>
+        <div> <span>feature:abcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefgabcdefg</span></div>
+        <div> <span>phone number<span> <div>
+        <div> <span>address</span></div>
+        <div class="button"><button name="choice" value="first_result">Select</div>
     </div>
  
     </div>
@@ -191,6 +195,10 @@ result label{
         <div class="button"><button name="choice" value="second_result">Select</div>
     </div>
    </div>
+   <div id="output"></div>
+   
+</div>
+
  
 </result>
         

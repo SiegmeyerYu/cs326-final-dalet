@@ -80,6 +80,7 @@ export class Database {
 		}
 	}
 
+
 	public async isFound_user(key: string) : Promise<boolean>  {
 		let v = await this.get_user(key);
 		console.log("isFound_user: result = " + v);
@@ -148,8 +149,34 @@ export class Database {
 		}
 	}
 
-
-
+	//for customer.html searchbar
+	public async search_shop(key: string,type:string) {
+		/*
+		let db = this.client.db(this.dbName); 
+		let collection = db.collection(this.collection_user);
+		var cursor;
+		if(type=="N/A"){
+		let cursor = await collection.find({'key' : key})}
+		else{
+		let cursor = await collection.find({'key' : key,'type':type})
+		}						
+		let result = cursor.hasNext()?cursor.next():null;
+		console.log("search_shop" + JSON.stringify(result));
+		if (result) {
+			return result;
+		} else {
+			return null;
+		}
+		*/
+		let result={'result' : 'search',
+		'name' : "petpaw",
+		'type' : "hospital",
+		'address' :"123 central ave,amherst",
+		'phone' : "781333-xxxx",
+		'logo' : "src=./images/cat-example.jpg",
+		'rate' : "5 stars" }
+		return result;
+	}
 
 	/*
     public async put(key: string, value: string) : Promise<void> {
