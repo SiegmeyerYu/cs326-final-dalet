@@ -73,7 +73,7 @@ export class MyServer {
 		let username = request.body.username;
 		let value : boolean = await this.theDatabase.isFound_user(username);
 		if(!value){
-			alert('Username not Found!');
+			//alert('Username not Found!');
 			response.write(JSON.stringify({'result' : 'error'}));
 			response.end();
 		}
@@ -87,7 +87,7 @@ export class MyServer {
 		let password = request.body.password;
 		let user = await this.theDatabase.get_user(username);
 		if(user.password !== password) {
-			alert('Password is incorrect!');
+			//alert('Password is incorrect!');
 			response.write(JSON.stringify({'result' : 'error'}));
 			response.end()
 		}
@@ -105,7 +105,7 @@ export class MyServer {
 		let username = request.body.username;
 		let value : boolean = await this.theDatabase.isFound_user(username);
 		if(value){
-			alert('Username has been registered!');
+			//alert('Username has been registered!');
 			response.write(JSON.stringify({'result' : 'error'}));
 			response.end();
 		}
@@ -180,7 +180,7 @@ export class MyServer {
 		let shopID = request.body.id;
 		let value : boolean = await this.theDatabase.isFound_shop(shopID);
 		if(!value){
-			alert('Shop not Found!');
+			//alert('Shop not Found!');
 			response.write(JSON.stringify({'result' : 'error'}));
 			response.end();
 		}
