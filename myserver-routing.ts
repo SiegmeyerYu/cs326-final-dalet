@@ -24,28 +24,28 @@ export class MyServer {
 	this.server.use('/', express.static('./html'));
 	this.server.use(express.json());
 	//// HANDLE OPERATIONS
-	this.router.get('/log_in', [this.userNotFoundHandler.bind(this), this.passwordIncorrectHandler.bind(this), this.logInHandler.bind(this)]); //partially done
-	this.router.get('/sign_up', [this.signUpErrorHandler.bind(this), this.signUpHandler.bind(this)]); //done
+	this.router.post('/log_in', [this.userNotFoundHandler.bind(this), this.passwordIncorrectHandler.bind(this), this.logInHandler.bind(this)]); //partially done
+	this.router.post('/sign_up', [this.signUpErrorHandler.bind(this), this.signUpHandler.bind(this)]); //done
 
-	this.router.get('/home', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
-	this.router.get('/search', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
+	this.router.post('/home', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
+	this.router.post('/search', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
 
-	this.router.get('/profile', [this.userNotFoundHandler.bind(this), this.readProfileHandler.bind(this)]); //done
-	this.router.get('/profile_edit', [this.userNotFoundHandler.bind(this), this.editProfileHandler.bind(this)]); //done
+	this.router.post('/profile', [this.userNotFoundHandler.bind(this), this.readProfileHandler.bind(this)]); //done
+	this.router.post('/profile_edit', [this.userNotFoundHandler.bind(this), this.editProfileHandler.bind(this)]); //done
 
-	this.router.get('/shop', [this.shopNotFoundHandler.bind(this), this.viewShopHandler.bind(this)]); //done
-	this.router.get('/shop_create', this.createShopHandler.bind(this)); //done
-	this.router.get('/shop_edit', [this.shopNotFoundHandler.bind(this), this.editShopHandler.bind(this)]); //done
-	this.router.get('/shop_delete', [this.shopNotFoundHandler.bind(this), this.deleteShopHandler.bind(this)]); //done
-	this.router.get('/shop_rate', [this.shopNotFoundHandler.bind(this), this.rateShopHandler.bind(this)]); //done
-	this.router.get('/shop_comment', [this.shopNotFoundHandler.bind(this), this.commentShopHandler.bind(this)]); //done
+	this.router.post('/shop', [this.shopNotFoundHandler.bind(this), this.viewShopHandler.bind(this)]); //done
+	this.router.post('/shop_create', this.createShopHandler.bind(this)); //done
+	this.router.post('/shop_edit', [this.shopNotFoundHandler.bind(this), this.editShopHandler.bind(this)]); //done
+	this.router.post('/shop_delete', [this.shopNotFoundHandler.bind(this), this.deleteShopHandler.bind(this)]); //done
+	this.router.post('/shop_rate', [this.shopNotFoundHandler.bind(this), this.rateShopHandler.bind(this)]); //done
+	this.router.post('/shop_comment', [this.shopNotFoundHandler.bind(this), this.commentShopHandler.bind(this)]); //done
 
-	this.router.get('/activity', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
-	this.router.get('/act_create', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
-	this.router.get('/act_edit', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
-	this.router.get('/act_delete', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
-	this.router.get('/act_join', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
-	this.router.get('/act_quit', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
+	this.router.post('/activity', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
+	this.router.post('/act_create', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
+	this.router.post('/act_edit', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
+	this.router.post('/act_delete', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
+	this.router.post('/act_join', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
+	this.router.post('/act_quit', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
 
 	// Set a fall-through handler if nothing matches.
 	this.router.post('*', async (request, response) => {

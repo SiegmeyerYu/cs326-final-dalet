@@ -24,7 +24,7 @@
                 border:5px solid purple;
                 border-radius:10px;
             }
-            #login {
+            .button {
                 padding:10px;
                 background-color:purple;
                 color:white;
@@ -34,10 +34,16 @@
                 margin:0px auto;
                 display:block;
             }
-            #login:hover {
+            .button:hover {
                 background-color: rgb(140,3,252);
                 color:white;
                 text-decoration:none;
+            }
+            #login {
+                float:left;
+            }
+            #cancel {
+                float:right;
             }
             .col-sm-4.col-form-label-lg {
                 font-weight:bold;
@@ -51,7 +57,7 @@
     </head>
     <body>
         <h1>PET CONNECTION</h1>
-        <form action="https://wp.zybooks.com/form-viewer.php" target="_blank" method="POST" id="form">
+        <form action="./homepage.html" method="POST" id="form" onsubmit="counterLogin()">
             <div class="form-group row">
                 <label for="username" class="col-sm-4 col-form-label-lg">Username:</label>
                 <div class="col-sm-8">
@@ -67,8 +73,12 @@
             </div>
 
             <br>
-            <input type="submit" value="Log In" id="login">
+            <input type="submit" value="Log In" id="login" class="button">
+            <button onclick="counterLoginCancel()" id="cancel" class="button">Cancel</button>
         </form>
+        <div>
+            <p id="output"></p>
+        </div>
     </body>
     <footer>
         <!-- Optional JavaScript -->
@@ -76,5 +86,21 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="client.js"></script>
+        <script>
+            const init = function(e) {
+            let result = localStorage.getItem('result');
+            let username = localStorage.getItem('username');
+            if (result === "succeed") {
+	            document.getElementById("output").innerHTML = "101: <b>" + username + " sign up successfully.</b>";
+            } 
+            else if (result === "fail") {
+                window.location.href = "./sign_up.html";
+            }
+            localStorage.removeItem('result');
+            localStorage.removeItem('username');
+            }
+            document.addEventListener('DOMContentLoaded', function(){init();});
+        </script>
     </footer>
 </html>

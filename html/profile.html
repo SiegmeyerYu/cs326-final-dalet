@@ -38,6 +38,18 @@
             #edit {
                 float:right;
             }
+            #delete {
+                margin-top:20px;
+                padding:8px;
+                background-color: white;
+                color:red;
+                border:2px solid red;
+                font-size:10pt;
+            }
+            #delete:hover {
+                background-color: red;
+                color: white;
+            }
             #person {
                 grid-area: person;
                 margin-top:100px;
@@ -116,7 +128,7 @@
         <div id="person">
             <img alt="portrait" src="./images/user_default.png" id="portrait">
             <button onclick="window.location.href = './profile_edit.html';" id="edit">Edit Profile</button>
-            <h2>Alias</h2>
+            <h2 id="alias">Alias</h2>
             <p>Location</p>
             <div id="description">
                 <p>Description:</p>
@@ -139,6 +151,7 @@
                     <p>Address</p>
                 </div>
             </a>
+            <button id="delete" onclick="counterShopDelete()">Delete Shop</button>
         </div>
 
         <div id="activity">
@@ -151,7 +164,12 @@
                     <p>Date: April 1st</p>
                 </div>
             </a>
+
+            <div>
+                <p id="output"></p>
+            </div>
         </div>
+        
     </body>
     <footer>
         <!-- Optional JavaScript -->
@@ -159,5 +177,31 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+        <script src="client.js"></script>
+        <script>
+            const init = function(e) {
+                let result = localStorage.getItem('profile_edit_result');
+                let username = localStorage.getItem('username');
+                if (result === "succeed") {
+                    document.getElementById("output").innerHTML = "101: <b>" + username + "\'s profile edited successfully.</b>";
+                } 
+                else if (result === "fail") {
+                    document.getElementById("output").innerHTML = "100: " + username + " not found.</b>";
+                }
+                localStorage.removeItem('profile_edit_result');
+
+                result = localStorage.getItem('shop_delete_result');
+                if (result === "succeed") {
+                    document.getElementById("output").innerHTML = "201: <b>" + username + "\'s shop is deleted successfully.</b>";
+                } 
+                else if (result === "fail") {
+                    document.getElementById("output").innerHTML = "200: " + username + " not found.</b>";
+                }
+                localStorage.removeItem('shop_delete_result');
+                localStorage.removeItem('username');
+            }
+            document.addEventListener('DOMContentLoaded', function(){init();});
+        </script>
     </footer>
 </html>
