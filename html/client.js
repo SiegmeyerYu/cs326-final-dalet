@@ -113,7 +113,7 @@ function counterShopEdit() {
 		let address = document.getElementById("address").value;
 		let phone = document.getElementById("phone").value;
 		let email = document.getElementById("email").value;
-		let outside_url = document.getElementById("outside_url").value;
+		let outside_url = document.getElementById("url").value;
 		let pic1 = document.getElementById("pic1").value;
 		let pic2 = document.getElementById("pic2").value;
 		let pic3 = document.getElementById("pic3").value;
