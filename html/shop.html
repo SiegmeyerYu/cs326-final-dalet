@@ -302,6 +302,17 @@
             }
             localStorage.removeItem('result');
             localStorage.removeItem('shop_name');
+
+            result = localStorage.getItem('activity_delete_result');
+            let act_name = localStorage.getItem('act_name');
+            if (result === "succeed") {
+	            document.getElementById("output").innerHTML = "201: <b> activity " + act_name + " deleted successfully.</b>";
+            } 
+            else if (result === "fail") {
+	            document.getElementById("output").innerHTML = "200: <b> activity " + act_name + " not found.</b>";
+            }
+            localStorage.removeItem('activity_delete_result');
+            localStorage.removeItem('act_name');
             }
             document.addEventListener('DOMContentLoaded', function(){init();});
         </script>
