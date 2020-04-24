@@ -30,7 +30,6 @@ export class MyServer {
 	this.router.post('/sign_up', [this.signUpErrorHandler.bind(this), this.signUpHandler.bind(this)]); //done
 
 	this.router.post('/home', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
-	this.router.post('/search', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
 
 	this.router.post('/profile', [this.userNotFoundHandler.bind(this), this.readProfileHandler.bind(this)]); //done
 	this.router.post('/profile_edit', [this.userNotFoundHandler.bind(this), this.editProfileHandler.bind(this)]); //done
@@ -71,12 +70,13 @@ export class MyServer {
 	private async toBeDefined(request, response) : Promise<void> {
 
 		response.write(JSON.stringify({'result':'to be defined'}));
-		response.write(JSON.stringify({'result' : 'to be defined'}));
+
 
 		response.end();
 	}
 	//for customer.html searchbar
-	private async viewSearchResultHandler(request,response,next):Promise<void>{
+	private async viewSearchResultHandler(request,response):Promise<void>{
+		console.log("here!");
 		let keyword=request.body.shopname;
 		let shoptype=request.body.shoptype;
 		let shop = await this.theDatabase.serach_shop(keyword,shoptype);
@@ -87,6 +87,7 @@ export class MyServer {
 		'phone' : shop.phone,
 		'logo' : shop.logo_src,
 		'rate' : shop.rate, }));
+		response.end();
 
 	}
 	private async userNotFoundHandler(request, response, next) : Promise<void> {

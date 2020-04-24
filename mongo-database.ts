@@ -167,15 +167,15 @@ export class Database {
 		} else {
 			return null;
 		}
-		*/
+		
 		let result={'result' : 'search',
 		'name' : "petpaw",
 		'type' : "hospital",
 		'address' :"123 central ave,amherst",
 		'phone' : "781333-xxxx",
 		'logo' : "src=./images/cat-example.jpg",
-		'rate' : "5 stars" }
-		return result;
+		'rate' : "5 stars" }*/
+		return true;
 	}
 
 	/*
