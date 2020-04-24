@@ -49,7 +49,7 @@ export class MyServer {
 	this.router.post('/act_join', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
 	this.router.post('/act_quit', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
 
-	this.router.post('/search',[this.shopNotFoundHandler.bind(this),this.viewSearchResultHandler.bind(this)])
+	this.router.post('/search',[this.shopNotFoundHandler.bind(this),this.viewSearchResultHandler.bind(this)]);
 
 	// Set a fall-through handler if nothing matches.
 	this.router.post('*', async (request, response) => {
@@ -65,9 +65,12 @@ export class MyServer {
 	}
 
 	private async toBeDefinedError(request, response, next) : Promise<void> {
+		next();
 	}
 
 	private async toBeDefined(request, response) : Promise<void> {
+		response.write(JSON.stringify({'result':'to be defined'}));
+		response.end();
 	}
 	//for customer.html searchbar
 	private async viewSearchResultHandler(request,response,next):Promise<void>{
