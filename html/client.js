@@ -230,7 +230,32 @@ function counterShopDelete() {
 		window.document.location = "./profile.html";   
 		})();
 }
+function searchShop() {
+    (async () => {
 
+		let searchKeyword=document.getElementById("keyword").value;
+		let searchType=document.getElementById("dropdown_type").value;
+		const data={'shopname':searchKeyword,
+					'shoptype':searchType
+					};
+				
+const newURL = url+"/search";
+console.log("searchShop: fetching " + newURL);
+const resp = await postData(newURL,data);
+const j = await resp.json();
+if (j['result'] !== 'error') {
+	document.getElementById("output").innerHTML += "201:"+ "<b>"+j['logo']+"</b>"+"<b>" +"Shopname: "+j['name'] + "</b> " +
+	"<b>"+"type: " +j['type']+ "</b>" +
+	"<b> "+"address: " + j['address'] + "</b>"+
+	"<b>"+"phone: "+j['phone']+"</b>";
+} else {
+	document.getElementById("output").innerHTML = "200: not found.</b>";
+}	    
+			
+	  
+		
+	})();
+}
 
 
 /*
