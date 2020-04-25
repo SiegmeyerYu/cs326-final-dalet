@@ -240,12 +240,10 @@ function searchShop() {
 		const resp = await postData(newURL,data);
 		const j = await resp.json();	
 	//	if (j['result'] !== 'error') {
-		document.getElementById("output").innerHTML +=j['logo']+"<br>"+
-		"Shopname: "+"<b>"+j['name']+"</b>"+"<br>"+
-		"Type: 	   "+"<b>"+j['type']+"</b>"+"<br>" +
-		"Address:  "+"<b>"+j['address']+"</b>"+"<br>"+
-		"Phone:    "+"<b>"+j['phone']+"</b>"+"<br>"+
-		"<input type=\"button\" onclick=\"location.href='https://google.com';\" value=\"select\" class=\"button\"/>";
+		document.getElementById("output").innerHTML += "201:"+ "<b>"+j['logo']+"</b>"+"<b>" +"Shopname: "+j['name'] + "</b> " +
+		"<b>"+"type: " +j['type']+ "</b>" +
+		"<b> "+"address: " + j['address'] + "</b>"+
+		"<b>"+"phone: "+j['phone']+"</b>";
 			
 }	)();
 

@@ -139,7 +139,7 @@ export class Database {
 		}
 	}
 
-	public async isFound_activity(key: number){
+	public async isFound_activity(key: number) : Promise<boolean>  {
 		let v = await this.get_activity(key);
 		console.log("isFound_activity: result = " + v);
 		if (v === null) {
@@ -150,7 +150,7 @@ export class Database {
 	}
 
 	//for customer.html searchbar
-	public serach_shop(key: string,type:string){
+	public async search_shop(key: string,type:string) {
 		/*
 		let db = this.client.db(this.dbName); 
 		let collection = db.collection(this.collection_user);
@@ -167,15 +167,15 @@ export class Database {
 		} else {
 			return null;
 		}
-		*/
+		
 		let result={'result' : 'search',
-		'name' : "Petpaw",
-		'type' : "Hospital",
-		'address' :"123 central ave,Amherst,MA",
-		'phone' : "781-333-xxxx",
-		'logo_src' : "<img alt=\"store\" src=\"./images/cat-example.jpg\">",
-		'rate' : "5 stars" }
-		return result;
+		'name' : "petpaw",
+		'type' : "hospital",
+		'address' :"123 central ave,amherst",
+		'phone' : "781333-xxxx",
+		'logo' : "src=./images/cat-example.jpg",
+		'rate' : "5 stars" }*/
+		return true;
 	}
 
 	/*

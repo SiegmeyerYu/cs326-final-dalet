@@ -48,9 +48,8 @@ export class MyServer {
 	this.router.post('/act_join', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
 	this.router.post('/act_quit', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
 
-	//this.router.post('/search',[this.shopNotFoundHandler.bind(this),this.viewSearchResultHandler.bind(this)]);
-	//for test purpose excluded shopenotfoundhandler
-	this.router.post('/search',this.viewSearchResultHandler.bind(this));
+	this.router.post('/search',[this.shopNotFoundHandler.bind(this),this.viewSearchResultHandler.bind(this)]);
+
 	// Set a fall-through handler if nothing matches.
 	this.router.post('*', async (request, response) => {
 	    response.send(JSON.stringify({ "result" : "command-not-found" }));
@@ -81,7 +80,7 @@ export class MyServer {
 		let keyword=request.body.shopname;
 		let shoptype=request.body.shoptype;
 		let shop = await this.theDatabase.serach_shop(keyword,shoptype);
-		response.write(JSON.stringify({'result' : 'serach',
+		response.write(JSON.stringify({'result' : 'view shop',
 		'name' : shop.name,
 		'type' : shop.type,
 		'address' : shop.address,
