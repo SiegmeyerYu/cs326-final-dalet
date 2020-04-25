@@ -22,7 +22,7 @@ export function counterLoginCancel() {
 		// set data in local storage
 		localStorage.setItem('result', 'cancelled');
 		// redirection
-		window.document.location = "./homepage.html";
+		window.document.location = "./index.html";
 		})();
 }
 
