@@ -47,7 +47,7 @@ Read:
 ![alt shop 2](./images/mt2_shop_2.png)
 
 Create & Update:<br>
-We use the same webpage shop_edit.html to process these two function. 
+We use the same webpage shop_edit.html to process these two function. (PS: There is some Chinese shown on the screenshot which is due to the language setting of browser, so if you are using English in your browser, they will be in English. These buttons are used to upload pictures.)
 ![alt shop edit 1](./images/mt2_shop_edit_1.png)
 ![alt shop edit 2](./images/mt2_shop_edit_2.png)
 
@@ -62,7 +62,16 @@ Since a shop could only be deleted by its owner, so we decide to add this functi
 
 
 # Heroku URL
-https://fast-sea-42002.herokuapp.com/
+https://fast-sea-42002.herokuapp.com
+
+# Appologize
+
+We still had some problem on heroku deployment which is not solved yet, so if you want to try the link but find application error on it, you may change the variable **url** in **client.js** to **localhost:8080/dalet**, set the parameter of server.listen() in **server-main.js** to **8080**, take TypeCripts out to the main directory, run the server by command (like what we do in in-class exercise), and **start by opening index.html**. 
+
+We felt hard to understand the connection between the coding, local host, and heroku. The functions worked well if we directly open the html files, but once we started it by navigating browser to localhost:8080, everything messed up. For example, it showed "Cannot Post/" when user tried to submit a form, the create/update/delete operations didn't show output any more, and the cancel botton didn't do its job either. I think we have to take more time to figure out these problems as long as heroku.
+
+Sorry about this.
+
 
 # laber division
 
