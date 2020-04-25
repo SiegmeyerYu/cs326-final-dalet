@@ -66,11 +66,14 @@ https://fast-sea-42002.herokuapp.com
 
 # Appologize
 
-We still had some problem on heroku deployment which is not solved yet, so if you want to try the link but find application error on it, you may change the variable **url** in **client.js** to **localhost:8080/dalet**, set the parameter of server.listen() in **server-main.js** to **8080**, take TypeCripts out to the main directory, run the server by command (like what we do in in-class exercise), and **start by opening index.html**. 
+We still had some problem on heroku deployment, so if you want to try the link but find application error on it, you may undo the changes for deployment:
+1. change the variable **url** in **client.js** to **"http://localhost:8080/dalet"**, 
+2. set the parameter of server.listen() in **server-main.js** to **8080**, 
+3. take TypeCripts out to the main directory, 
+4. run the server by command **ts-node --prefer-ts-exts server-main.ts** (like what we do in in-class exercise), 
+5. navigate the browser to **localhost:8080**. 
 
-We felt hard to understand the connection between the coding, local host, and heroku. The functions worked well if we directly open the html files, but once we started it by navigating browser to localhost:8080, everything messed up. For example, it showed "Cannot Post/" when user tried to submit a form, the create/update/delete operations didn't show output any more, and the cancel botton didn't do its job either. I think we have to take more time to figure out these problems as long as heroku.
-
-Sorry about this.
+We are still trying on the heroku things. Sorry about this.
 
 
 # laber division
