@@ -1,6 +1,6 @@
-const url = "http://localhost:8080/dalet";
+const url = "https://fast-sea-42002.herokuapp.com/dalet";
 
-async function postData(url, data) {
+export async function postData(url, data) {
     const resp = await fetch(url,
                              {
                                  method: 'POST',
@@ -16,7 +16,7 @@ async function postData(url, data) {
     return resp;
 }
 
-function counterLoginCancel() {
+export function counterLoginCancel() {
 	(async () => {
 		console.log("Log in Cancelled.");
 		// set data in local storage
@@ -26,7 +26,7 @@ function counterLoginCancel() {
 		})();
 }
 
-function counterLogin() {
+export function counterLogin() {
 	(async () => {
 		console.log("Log in.");
 		let username = document.getElementById("username").value;
@@ -48,7 +48,7 @@ function counterLogin() {
 		})();
 }
 
-function counterSignUp() {
+export function counterSignUp() {
 	(async () => {
 		console.log("Sign up in process.");
 		// get data from html
@@ -74,7 +74,7 @@ function counterSignUp() {
 		})();
 }
 
-function counterShopCancel() {
+export function counterShopCancel() {
 	(async () => {
 		console.log("Shop Edit Cancelled.");
 		// set data in local storage
@@ -84,7 +84,7 @@ function counterShopCancel() {
 		})();
 }
 
-function counterShopRead() {
+export function counterShopRead() {
 	(async () => {
 		let shop_id; // NEED FIX
 		const data = {'shop_id' : shop_id};
@@ -100,7 +100,7 @@ function counterShopRead() {
 		})();
 }
 
-function counterShopEdit() {
+export function counterShopEdit() {
 	(async () => {
 		console.log("shop edit in process.");
 		let shop_id; // NEED FIX
@@ -152,7 +152,7 @@ function counterShopEdit() {
 		})();
 }
 
-function counterProfileCancel() {
+export function counterProfileCancel() {
 	(async () => {
 		console.log("Shop Edit Cancelled.");
 		// set data in local storage
@@ -162,7 +162,7 @@ function counterProfileCancel() {
 		})();
 }
 
-function counterProfileRead() {
+export function counterProfileRead() {
 	(async () => {
 		let username; // NEED FIX
 		const data = {'username' : username};
@@ -178,7 +178,7 @@ function counterProfileRead() {
 		})();
 }
 
-function counterProfileEdit() {
+export function counterProfileEdit() {
 	(async () => {
 		console.log("Profile edit in process.");
 		let username; // NEED FIX
@@ -206,7 +206,7 @@ function counterProfileEdit() {
 		})();
 }
 
-function counterShopDelete() {
+export function counterShopDelete() {
 	(async () => {
 		console.log("Shop delete in process.");
 		let username; // NEED FIX
@@ -228,7 +228,8 @@ function counterShopDelete() {
 		window.document.location = "./profile.html";   
 		})();
 }
-function searchShop() {
+
+export function searchShop() {
     (async () => {
 		let searchKeyword=document.getElementById("keyword").value;
 		let searchType=document.getElementById("dropdown_type").value;
@@ -247,9 +248,10 @@ function searchShop() {
 		"Phone:    "+"<b>"+j['phone']+"</b>"+"<br>"+
 		"<input type=\"button\" onclick=\"location.href='https://google.com';\" value=\"select\" class=\"button\"/>";
 			
-}	)();
+	}	)();
+}
 
-function counterActivityCancel() {
+export function counterActivityCancel() {
 	(async () => {
 		// set data in local storage
 		localStorage.setItem('activity_edit_result', 'cancelled');
@@ -258,7 +260,7 @@ function counterActivityCancel() {
 		})();
 }
 
-function counterActivityRead() {
+export function counterActivityRead() {
 	(async () => {
 		let act_id; // NEED FIX
 		const data = {'act_id' : act_id};
@@ -274,7 +276,7 @@ function counterActivityRead() {
 		})();
 }
 
-function counterActivityEdit() {
+export function counterActivityEdit() {
 	(async () => {
 		let act_id; // NEED FIX
 		let act_name = document.getElementById("act name").value;
@@ -298,7 +300,7 @@ function counterActivityEdit() {
 		})();
 }
 
-function counterActivityDelete() {
+export function counterActivityDelete() {
 	(async () => {
 		let username; // NEED FIX
 		const data = {'username':username};
@@ -316,5 +318,4 @@ function counterActivityDelete() {
 		// redirection
 		window.document.location = "./shop.html";   
 		})();
-}
 }

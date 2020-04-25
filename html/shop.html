@@ -303,6 +303,7 @@
             localStorage.removeItem('result');
             localStorage.removeItem('shop_name');
 
+            
             result = localStorage.getItem('activity_delete_result');
             let act_name = localStorage.getItem('act_name');
             if (result === "succeed") {
@@ -313,7 +314,9 @@
             }
             localStorage.removeItem('activity_delete_result');
             localStorage.removeItem('act_name');
-            }
+            
+            
+            }   
             document.addEventListener('DOMContentLoaded', function(){init();});
         </script>
     </footer>
