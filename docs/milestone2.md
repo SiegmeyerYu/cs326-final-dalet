@@ -62,11 +62,12 @@ Since a shop could only be deleted by its owner, so we decide to add this functi
 
 
 # Heroku URL
+https://fast-sea-42002.herokuapp.com/
 
 # laber division
 
 Chuyang Zhong - homepage, customer, and heroku deployment
 
-Zhongdong Yu - shop and profile
+Zhongdong Yu - shop, profile, and heroku deployment
 
-Zhou Xie - activity, and milestone2.md
+Zhou Xie - shop, activity, and milestone2.md
