@@ -46,7 +46,7 @@
     </head>
     <body>
         <h1>PET CONNECTION</h1>
-        <form action="./activity.html" method="POST" id="form">
+        <div id="form">
             <div class="form-group row">
                 <label for="act name" class="col-sm-3 col-form-label-lg">Activity Name:</label>
                 <div class="col-sm-9">
@@ -100,9 +100,9 @@
             </div>
 
             <br>
-            <input type="submit" value="Save changes" class="click" id="submit" onsubmit="counterActivityEdit()">
+            <button onclick="counterActivityEdit()" id="submit" class="click">Save Changes</button>
             <button onclick="counterActivityCancel()" id="cancel" class="click">Cancel</button>
-        </form>
+        </div>
     </body>
     <footer>
         <!-- Optional JavaScript -->

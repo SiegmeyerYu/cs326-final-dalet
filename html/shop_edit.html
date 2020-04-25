@@ -46,7 +46,7 @@
     </head>
     <body>
         <h1>PET CONNECTION</h1>
-        <form action="./shop.html" id="form">
+        <div id="form">
             <div class="form-group row">
                 <label for="shop name" class="col-sm-3 col-form-label-lg">Shop Name:</label>
                 <div class="col-sm-9">
@@ -140,9 +140,9 @@
             </div>
             <br>
 
-            <input type="submit" id="submit" class="click" value="Save Changes" onsubmit="counterShopEdit()">
+            <button onclick="counterShopEdit()" id="submit" class="click">Save Changes</button>
             <button onclick="counterShopCancel()" id="cancel" class="click">Cancel</button>
-        </form>
+        </div>
     </body>
     <footer>
         <!-- Optional JavaScript -->

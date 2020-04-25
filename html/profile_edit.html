@@ -52,7 +52,7 @@
     </head>
     <body>
         <h1>PET CONNECTION</h1>
-        <form action="./profile.html" method="POST" id="form" onsubmit="counterProfileEdit()">
+        <div id="form">
             <div class="form-group row">
                 <label for="alias" class="col-sm-4 col-form-label-lg">Alias:</label>
                 <div class="col-sm-8">
@@ -109,10 +109,9 @@
                 </div>
             </div>
 
-
-            <input type="submit" value="Save Changes" id="submit" class="click">
+            <button onclick="counterProfileEdit()" id="submit" class="click">Save Changes</button>
             <button onclick="counterProfileCancel()" id="cancel" class="click">Cancel</button>
-        </form>
+        </div>
     </body>
     <footer>
         <!-- Optional JavaScript -->

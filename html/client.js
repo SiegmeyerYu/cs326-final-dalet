@@ -41,10 +41,10 @@ export function counterLogin() {
 			result = 'succeed';
 		}
 		// set data in local storage
-		localStorage.setItem('result', result);
+		localStorage.setItem('result', result); 
 		localStorage.setItem('username', username);
-		// redirection if necessary
-		window.document.location = "./shop.html";    
+		// redirection
+		window.document.location = "./index.html";    ////////////////////////////////////////////////
 		})();
 }
 
@@ -71,6 +71,8 @@ export function counterSignUp() {
 		// set data in local storage
 		localStorage.setItem('result', result);
 		localStorage.setItem('username', username);  
+		// redirection
+		window.document.location = "./log_in.html";    ////////////////////////////////////////////////
 		})();
 }
 
@@ -80,7 +82,7 @@ export function counterShopCancel() {
 		// set data in local storage
 		localStorage.setItem('result', 'cancelled');
 		// redirection
-		window.document.location = "./shop.html";
+		window.document.location = "./index.html";
 		})();
 }
 
@@ -97,6 +99,8 @@ export function counterShopRead() {
 			result = 'succeed';
 		}
 		localStorage.setItem('result', 'succeed');// NEED FIX
+		// redirection
+		window.document.location = "./shop.html";
 		})();
 }
 
@@ -175,6 +179,8 @@ export function counterProfileRead() {
 			result = 'succeed';
 		}
 		localStorage.setItem('result', 'succeed'); // NEED FIX
+		// redirection
+		window.document.location = "./profile.html";
 		})();
 }
 
@@ -203,6 +209,8 @@ export function counterProfileEdit() {
 		}
 		localStorage.setItem('profile_edit_result', 'succeed');// NEED FIX
 		localStorage.setItem('alias', alias);  
+		// redirection
+		window.document.location = "./profile.html";
 		})();
 }
 
@@ -297,6 +305,8 @@ export function counterActivityEdit() {
 		}
 		localStorage.setItem('activity_edit_result', 'succeed'); // NEED FIX
 		localStorage.setItem('act_name', act_name);  
+		// redirection
+		window.document.location = "./activity.html";
 		})();
 }
 

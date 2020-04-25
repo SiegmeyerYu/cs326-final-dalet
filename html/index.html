@@ -147,6 +147,24 @@
 
     </section>
 
+    <div><p id="output"></p></div>
+
 </body>
 
+<script src="client.js"></script>
+<script>
+    const init = function(e) {
+        let result = localStorage.getItem('result');
+        let username = localStorage.getItem('username');
+        if (result === "succeed") {
+	        document.getElementById("output").innerHTML = "101: <b>" + username + " log in successfully.</b>";
+        } 
+        else if (result === "fail") {
+            window.location.href = "./sign_up.html";
+        }
+        localStorage.removeItem('result');
+        localStorage.removeItem('username');
+        }
+        document.addEventListener('DOMContentLoaded', function(){init();});
+</script>
 </html>

@@ -43,7 +43,7 @@
     </head>
     <body>
         <h1>PET CONNECTION</h1>
-        <form action="./log_in.html" method="POST" id="form" onsubmit="counterSignUp()">
+        <div id="form">
             <div class="form-group row">
                 <label for="username" class="col-sm-4 col-form-label-lg">Username:</label>
                 <div class="col-sm-8">
@@ -61,7 +61,7 @@
             <div class="form-group row">
                 <label for="password" class="col-sm-4 col-form-label-lg">Enter Password Again:</label>
                 <div class="col-sm-8">
-                    <input type="password" id="password" class="form-control" name="password" required>
+                    <input type="password" id="password2" class="form-control" name="password2" required>
                 </div>
             </div>
 
@@ -80,9 +80,9 @@
             </div>
 
 
-            <input type="submit" value="Sign Up" id="signup" class="button">
+            <button onclick="counterSignUp()" id="signup" class="button">Sign up</button>
             <button onclick="counterLoginCancel()" id="cancel" class="button">Cancel</button>
-        </form>
+        </div>
     </body>
     <footer>
         <!-- Optional JavaScript -->

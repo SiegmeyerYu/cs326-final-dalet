@@ -57,7 +57,7 @@
     </head>
     <body>
         <h1>PET CONNECTION</h1>
-        <form action="./index.html" method="POST" id="form">
+        <div id="form">
             <div class="form-group row">
                 <label for="username" class="col-sm-4 col-form-label-lg">Username:</label>
                 <div class="col-sm-8">
@@ -73,9 +73,9 @@
             </div>
 
             <br>
-            <input type="submit" value="Log In" id="login" class="button" onsubmit="counterLogin()">
+            <button onclick="counterLogin()" id="login" class="button">Log In</button>
             <button onclick="counterLoginCancel()" id="cancel" class="button">Cancel</button>
-        </form>
+        </div>
         <div>
             <p id="output"></p>
         </div>
