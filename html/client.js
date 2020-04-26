@@ -1,6 +1,6 @@
 const url = "http://localhost:8080/dalet";
 
-export async function postData(url, data) {
+async function postData(url, data) {
     const resp = await fetch(url,
                              {
                                  method: 'POST',
@@ -16,7 +16,7 @@ export async function postData(url, data) {
     return resp;
 }
 
-export function counterLoginCancel() {
+function counterLoginCancel() {
 	(async () => {
 		console.log("Log in Cancelled.");
 		// set data in local storage
@@ -26,7 +26,7 @@ export function counterLoginCancel() {
 		})();
 }
 
-export function counterLogin() {
+function counterLogin() {
 	(async () => {
 		console.log("Log in.");
 		let username = document.getElementById("username").value;
@@ -48,7 +48,7 @@ export function counterLogin() {
 		})();
 }
 
-export function counterSignUp() {
+function counterSignUp() {
 	(async () => {
 		console.log("Sign up in process.");
 		// get data from html
@@ -76,7 +76,7 @@ export function counterSignUp() {
 		})();
 }
 
-export function counterShopCancel() {
+function counterShopCancel() {
 	(async () => {
 		console.log("Shop Edit Cancelled.");
 		// set data in local storage
@@ -86,7 +86,7 @@ export function counterShopCancel() {
 		})();
 }
 
-export function counterShopRead() {
+function counterShopRead() {
 	(async () => {
 		let shop_id; // NEED FIX
 		const data = {'shop_id' : shop_id};
@@ -104,7 +104,7 @@ export function counterShopRead() {
 		})();
 }
 
-export function counterShopEdit() {
+function counterShopEdit() {
 	(async () => {
 		console.log("shop edit in process.");
 		let shop_id; // NEED FIX
@@ -156,7 +156,7 @@ export function counterShopEdit() {
 		})();
 }
 
-export function counterProfileCancel() {
+function counterProfileCancel() {
 	(async () => {
 		console.log("Shop Edit Cancelled.");
 		// set data in local storage
@@ -166,7 +166,7 @@ export function counterProfileCancel() {
 		})();
 }
 
-export function counterProfileRead() {
+function counterProfileRead() {
 	(async () => {
 		let username; // NEED FIX
 		const data = {'username' : username};
@@ -184,7 +184,7 @@ export function counterProfileRead() {
 		})();
 }
 
-export function counterProfileEdit() {
+function counterProfileEdit() {
 	(async () => {
 		console.log("Profile edit in process.");
 		let username; // NEED FIX
@@ -214,7 +214,7 @@ export function counterProfileEdit() {
 		})();
 }
 
-export function counterShopDelete() {
+function counterShopDelete() {
 	(async () => {
 		console.log("Shop delete in process.");
 		let username; // NEED FIX
@@ -237,7 +237,7 @@ export function counterShopDelete() {
 		})();
 }
 
-export function searchShop() {
+function searchShop() {
     (async () => {
 		let searchKeyword=document.getElementById("keyword").value;
 		let searchType=document.getElementById("dropdown_type").value;
@@ -259,7 +259,7 @@ export function searchShop() {
 	}	)();
 }
 
-export function counterActivityCancel() {
+function counterActivityCancel() {
 	(async () => {
 		// set data in local storage
 		localStorage.setItem('activity_edit_result', 'cancelled');
@@ -268,7 +268,7 @@ export function counterActivityCancel() {
 		})();
 }
 
-export function counterActivityRead() {
+function counterActivityRead() {
 	(async () => {
 		let act_id; // NEED FIX
 		const data = {'act_id' : act_id};
@@ -284,7 +284,7 @@ export function counterActivityRead() {
 		})();
 }
 
-export function counterActivityEdit() {
+function counterActivityEdit() {
 	(async () => {
 		let act_id; // NEED FIX
 		let act_name = document.getElementById("act name").value;
@@ -310,7 +310,7 @@ export function counterActivityEdit() {
 		})();
 }
 
-export function counterActivityDelete() {
+function counterActivityDelete() {
 	(async () => {
 		let username; // NEED FIX
 		const data = {'username':username};
