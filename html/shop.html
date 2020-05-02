@@ -117,23 +117,8 @@
                 padding:10px;
                 border:2px solid gray;
             }
-            .avatar {
-                float:left;
-                width:50px;
-                height:50px;
-                border-radius:50%;
-                border:3px solid black;
-                margin-right:20px;
-                margin-bottom:30px;
-                clear:left;
-            }
-            .username {
-                font-size:18pt;
-            }
             .comment_text {
-                display:inline-block;
                 font-size:15pt;
-                width:800px;
             }
             #merchant_web {
                 display:inline-block;
@@ -193,6 +178,14 @@
             .material-icons.add:hover {
                 color: rgb(140,3,252);
             }
+            #your_comment{
+                width: 800px;
+            }
+            #err_message {
+                color:red;
+                font-size:18pt;
+                margin-top:10px;
+            }
         </style>
     </head>
     <body>
@@ -201,71 +194,47 @@
             <button onclick="window.location.href = './shop_edit.html';" id="edit">Edit My Shop</button>
             <div id="info">
                 <img alt="shop" id="shop_img" src="">
-                <div id="overall_rating">
-                    <span class="material-icons yellow">grade</span>
-                    <span class="material-icons yellow">grade</span>
-                    <span class="material-icons yellow">grade</span>
-                    <span class="material-icons yellow">grade</span>
-                    <span class="material-icons gray">grade</span>
-                </div>
-                <h1>Shop Name</h1>
-                <p class="subtitle">Cattery</p>
-                <p class="subtitle">Open Hours: Workday 8:00 - 17:00</p>
-                <p class="subtitle">Location: Someplace</p>
+                <div id="overall_rating"></div>
+                <h1 id="shop_name">Shop Name</h1>
+                <p class="subtitle" id="shop_type">Cattery</p>
+                <p class="subtitle" id="open_hour">Open Hours: Workday 8:00 - 17:00</p>
+                <p class="subtitle" id="address">Location: Someplace</p>
             </div>
 
+            <!--
             <div id="tags">
                 <span class="tag"><strong>Cat</strong></span>
                 <span class="tag"><strong>American Shorthair</strong></span>
                 <span class="tag"><strong>Ragdoll</strong></span>
             </div>
+            -->
 
             <div id="pictures">
-                <img alt="cat picture" src="" class="picture">
-                <img alt="cat picture" src="" class="picture">
-                <img alt="cat picture" src="" class="picture">
-                <img alt="cat picture" src="" class="picture">
+                <img alt="cat picture" src="" class="picture" id="pic1">
+                <img alt="cat picture" src="" class="picture" id="pic2">
+                <img alt="cat picture" src="" class="picture" id="pic3">
+                <img alt="cat picture" src="" class="picture" id="pic4">
             </div>
 
             <div id="comments">
                 <h2>Comments</h2>
                 <div class="comment">
-                    <img class="avatar" alt="AVT" src="./images/user_default.png">
-                    <div class="comment_rating">
-                        <span class="material-icons yellow">grade</span>
-                        <span class="material-icons yellow">grade</span>
-                        <span class="material-icons yellow">grade</span>
-                        <span class="material-icons yellow">grade</span>
-                        <span class="material-icons gray">grade</span>
-                    </div>
-                    <a href="" target="_blank" class="username">Username1</a>
-                    <p class="comment_text">blablabla blablabla blabla blablabla blabla bla blablabla blablabla blablabla blablabla blabla bla blablabla blablabla.</p>
-                </div>
-                <div class="comment">
-                    <img class="avatar" alt="AVT" src="./images/user_default.png">
-                    <div class="comment_rating">
-                        <span class="material-icons yellow">grade</span>
-                        <span class="material-icons yellow">grade</span>
-                        <span class="material-icons yellow">grade</span>
-                        <span class="material-icons gray">grade</span>
-                        <span class="material-icons gray">grade</span>
-                    </div>
-                    <a href="" target="_blank" class="username">Username1</a>
-                    <p class="comment_text">blablabla blablabla blabla blablabla blabla bla blablabla.</p>
+                    <label for="your_rate">Your rates(0~5):</label>
+                    <input type="number" id="your_rate" name="your_rate" min="0" max="5"><br>
+                    <label for="your_comment">Your Comment:</label><br>
+                    <textarea id="your_comment" name="your_comment" rows="3" maxlength="200" placeholder="Type your comment here."></textarea><br>
+                    <button id="comment_submit" onclick="counterShopRate()">Post</button>
+                    <p id="err_message"></p>
                 </div>
             </div>
-
-            <!-- Output -->
-            <div>
-                <p id="output"></p>
-            </div>
-
+            <p id="shop_id*"><p>
+            <p id="username*"></p>
         </div>
 
         <div id="right">
             <h2>Contact</h2>
-            <p class="subtitle">Phone number: XXX-XXX-XXXX</p>
-            <p class="subtitle">Email Address: username@somemail.com</p>
+            <p class="subtitle" id="phone">Phone number: XXX-XXX-XXXX</p>
+            <p class="subtitle" id="email">Email Address: username@somemail.com</p>
             <a href="https://github.com/Zhongdong-Siege/cs326-final-dalet" target="_blank" id="merchant_web">Visit Their Website</a>
 
             <br>
@@ -292,30 +261,53 @@
         <script src="client.js"></script>
         <script>
             const init = function(e) {
-            let result = localStorage.getItem('result');
-            let shop_name = localStorage.getItem('shop_name');
-            if (result === "succeed") {
-	            document.getElementById("output").innerHTML = "101: <b> shop " + shop_name + " edited successfully.</b>";
-            } 
-            else if (result === "fail") {
-	            document.getElementById("output").innerHTML = "100: <b> shop " + shop_name + " not found.</b>";
-            }
-            localStorage.removeItem('result');
-            localStorage.removeItem('shop_name');
+                let username = localStorage.getItem('username');
+                let shop_id = localStorage.getItem('shop_id');
+			    let shop_name = localStorage.getItem('shop_name');
+			    let shop_image = localStorage.getItem('shop_image');
+			    let shop_type = localStorage.getItem('shop_type');
+			    let open_hour = localStorage.getItem('open_hour');
+			    let address = localStorage.getItem('address');
+			    let phone = localStorage.getItem('phone');
+			    let email = localStorage.getItem('email');
+			    let outside_url = localStorage.getItem('outside_url');
+			    let pic1 = localStorage.getItem('pic1');
+			    let pic2 = localStorage.getItem('pic2');
+			    let pic3 = localStorage.getItem('pic3');
+			    let pic4 = localStorage.getItem('pic4');
+			    let rate = localStorage.getItem('rate');
+                let comment = localStorage.getItem('comment');
 
-            
-            result = localStorage.getItem('activity_delete_result');
-            let act_name = localStorage.getItem('act_name');
-            if (result === "succeed") {
-	            document.getElementById("output").innerHTML = "201: <b> activity " + act_name + " deleted successfully.</b>";
-            } 
-            else if (result === "fail") {
-	            document.getElementById("output").innerHTML = "200: <b> activity " + act_name + " not found.</b>";
-            }
-            localStorage.removeItem('activity_delete_result');
-            localStorage.removeItem('act_name');
-            
-            
+                document.getElementById('shop_id*').textContent = shop_id;
+                document.getElementById('username*').textContent = username;
+                document.getElementById('shop_name').textContent = shop_name;
+                //document.getElementById('shop_image').src = shop_image;
+                document.getElementById('shop_type').textContent = shop_type;
+                document.getElementById('open_hour').textContent = "Open hours: " + open_hour;
+                document.getElementById('address').textContent = "Address: "+address;
+                document.getElementById('phone').textContent = "Phone: "+ phone;
+                document.getElementById('email').textContent = "Email: "+ email;
+                //document.getElementById('pic1').src = pic1;
+                //document.getElementById('pic2').src = pic2;
+                //document.getElementById('pic3').src = pic3;
+                //document.getElementById('pic4').src = pic4;
+
+                let rating = document.getElementById('overall_rating');
+                for(let i = 0; i < 5; i++){
+                    if ((i+0.5)<=rate){
+                        rating.innerHTML += '<span class="material-icons yellow">grade</span>';
+                    }
+                    else{
+                        rating.innerHTML += '<span class="material-icons gray">grade</span>';
+                    }
+                }
+
+                let len = comment.length;
+                let comment_zone = document.getElementById('comments');
+                if(len>3) {len=3;}
+                for(let i = 0; i < len; i++){
+                    comment_zone.innerHTML += '<div class="comment"><p class="comment_text">&nbsp;&nbsp;&nbsp;&nbsp;'+comment[comment.length-1-i]+'</p></div>'
+                }
             }   
             document.addEventListener('DOMContentLoaded', function(){init();});
         </script>

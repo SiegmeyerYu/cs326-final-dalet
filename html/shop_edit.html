@@ -42,6 +42,11 @@
             #cancel {
                 float:right;
             }
+            #err_message {
+                color:red;
+                font-size:18pt;
+                margin-top:10px;
+            }
         </style>
     </head>
     <body>
@@ -92,7 +97,7 @@
             <div class="form-group row">
                 <label for="phone" class="col-sm-3 col-form-label-lg">Phone number:</label>
                 <div class="col-sm-9">
-                    <input type="text" id="phone" class="form-control" name="phone number" placeholder="XXX-XXX-XXXX" required>
+                    <input type="text" id="phone" class="form-control" name="phone number" placeholder="digits only" required>
                 </div>
             </div>
 
@@ -143,6 +148,8 @@
             <button onclick="counterShopEdit()" id="submit" class="click">Save Changes</button>
             <button onclick="counterShopCancel()" id="cancel" class="click">Cancel</button>
         </div>
+        <p id="err_message"></p>
+        <p id="username*" hidden></p>
     </body>
     <footer>
         <!-- Optional JavaScript -->

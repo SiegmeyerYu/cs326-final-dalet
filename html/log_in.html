@@ -53,6 +53,11 @@
             .form-control {
                 margin-top:10px;
             }
+            #err_message {
+                color:red;
+                font-size:18pt;
+                margin-top:10px;
+            }
         </style>
     </head>
     <body>
@@ -76,9 +81,7 @@
             <button onclick="counterLogin()" id="login" class="button">Log In</button>
             <button onclick="counterLoginCancel()" id="cancel" class="button">Cancel</button>
         </div>
-        <div>
-            <p id="output"></p>
-        </div>
+        <p id="err_message"></p>
     </body>
     <footer>
         <!-- Optional JavaScript -->
@@ -87,20 +90,5 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script src="client.js"></script>
-        <script>
-            const init = function(e) {
-            let result = localStorage.getItem('result');
-            let username = localStorage.getItem('username');
-            if (result === "succeed") {
-	            document.getElementById("output").innerHTML = "101: <b>" + username + " sign up successfully.</b>";
-            } 
-            else if (result === "fail") {
-                window.location.href = "./sign_up.html";
-            }
-            localStorage.removeItem('result');
-            localStorage.removeItem('username');
-            }
-            document.addEventListener('DOMContentLoaded', function(){init();});
-        </script>
     </footer>
 </html>

@@ -148,6 +148,7 @@
     </section>
 
     <div><p id="output"></p></div>
+    <p id="username*" hidden></p>
 
 </body>
 
@@ -157,14 +158,13 @@
         let result = localStorage.getItem('result');
         let username = localStorage.getItem('username');
         if (result === "succeed") {
-	        document.getElementById("output").innerHTML = "101: <b>" + username + " log in successfully.</b>";
+            document.getElementById("output").innerHTML = "101: <b>" + username + " log in successfully.</b>";
+            document.getElementById("username*").innerHTML = username;
         } 
         else if (result === "fail") {
             window.location.href = "./sign_up.html";
         }
-        localStorage.removeItem('result');
-        localStorage.removeItem('username');
-        }
-        document.addEventListener('DOMContentLoaded', function(){init();});
+    }
+    document.addEventListener('DOMContentLoaded', function(){init();});
 </script>
 </html>

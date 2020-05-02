@@ -1,4 +1,5 @@
 import { promises } from "dns";
+import { runInNewContext } from "vm";
 
 let http = require('http');
 let url = require('url');
@@ -26,20 +27,19 @@ export class MyServer {
 	this.server.use('/', express.static('./html'));
 	this.server.use(express.json());
 	//// HANDLE OPERATIONS
-	this.router.post('/log_in', [this.userNotFoundHandler.bind(this), this.passwordIncorrectHandler.bind(this), this.logInHandler.bind(this)]); //partially done
+	this.router.post('/log_in', [this.userNotFoundHandler.bind(this), this.passwordIncorrectHandler.bind(this), this.logInHandler.bind(this)]); //done
 	this.router.post('/sign_up', [this.signUpErrorHandler.bind(this), this.signUpHandler.bind(this)]); //done
 
 	this.router.post('/home', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
 
-	this.router.post('/profile', [this.userNotFoundHandler.bind(this), this.readProfileHandler.bind(this)]); //done
-	this.router.post('/profile_edit', [this.userNotFoundHandler.bind(this), this.editProfileHandler.bind(this)]); //done
+	this.router.post('/profile', [this.userNotFoundHandler.bind(this), this.readProfileHandler.bind(this)]);
+	this.router.post('/profile_edit', [this.userNotFoundHandler.bind(this), this.editProfileHandler.bind(this)]);
 
 	this.router.post('/shop', [this.shopNotFoundHandler.bind(this), this.viewShopHandler.bind(this)]); //done
-	this.router.post('/shop_create', this.createShopHandler.bind(this)); //done
-	this.router.post('/shop_edit', [this.shopNotFoundHandler.bind(this), this.editShopHandler.bind(this)]); //done
+	//this.router.post('/shop_create', this.createShopHandler.bind(this));
+	this.router.post('/shop_edit', [this.editShopErrorHandler.bind(this), this.editShopHandler.bind(this), this.viewShopHandler.bind(this)]); //done
 	this.router.post('/shop_delete', [this.shopNotFoundHandler.bind(this), this.deleteShopHandler.bind(this)]); //done
-	this.router.post('/shop_rate', [this.shopNotFoundHandler.bind(this), this.rateShopHandler.bind(this)]); //done
-	this.router.post('/shop_comment', [this.shopNotFoundHandler.bind(this), this.commentShopHandler.bind(this)]); //done
+	this.router.post('/shop_rate', [this.rateShopErrorHandler.bind(this), this.rateShopHandler.bind(this)]); //done
 
 	this.router.post('/activity', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
 	this.router.post('/act_create', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
@@ -69,12 +69,10 @@ export class MyServer {
 	}
 
 	private async toBeDefined(request, response) : Promise<void> {
-
 		response.write(JSON.stringify({'result':'to be defined'}));
-
-
 		response.end();
 	}
+
 	//for customer.html searchbar
 	private async viewSearchResultHandler(request,response):Promise<void>{
 		console.log("here!");
@@ -91,14 +89,15 @@ export class MyServer {
 		'logo' : shop.logo_src,
 		'rate' : shop.rate, }));
 		response.end();
-
 	}
+
 	private async userNotFoundHandler(request, response, next) : Promise<void> {
 		let username = request.body.username;
 		let value : boolean = await this.theDatabase.isFound_user(username);
+		console.log(value);
 		if(!value){
 			//alert('Username not Found!');
-			response.write(JSON.stringify({'result' : 'error'}));
+			response.write(JSON.stringify({'result' : 'Username not found!'}));
 			response.end();
 		}
 		else {
@@ -112,7 +111,7 @@ export class MyServer {
 		let user = await this.theDatabase.get_user(username);
 		if(user.password !== password) {
 			//alert('Password is incorrect!');
-			response.write(JSON.stringify({'result' : 'error'}));
+			response.write(JSON.stringify({'result' : 'Incorrect Password!'}));
 			response.end()
 		}
 		else {
@@ -121,16 +120,33 @@ export class MyServer {
 	}
 
 	private async logInHandler(request, response) : Promise<void> {
-		// Log in?
+		response.write(JSON.stringify({'result' : 'succeed'}));
 		response.end();
 	}
 
 	private async signUpErrorHandler(request, response, next) : Promise<void> {
 		let username = request.body.username;
+		let password = request.body.password;
+		let password2 = request.body.password2;
 		let value : boolean = await this.theDatabase.isFound_user(username);
-		if(value){
-			//alert('Username has been registered!');
-			response.write(JSON.stringify({'result' : 'error'}));
+		if(username === "") {
+			response.write(JSON.stringify({'result' : 'Please enter username.'}));
+			response.end();
+		}
+		else if(password === "") {
+			response.write(JSON.stringify({'result' : 'Please enter password.'}));
+			response.end();
+		}
+		else if(password2 === "") {
+			response.write(JSON.stringify({'result' : 'Please enter your password again.'}));
+			response.end();
+		}
+		else if(password !== password2) {
+			response.write(JSON.stringify({'result' : 'Passwords do not match. Please check your password.'}));
+			response.end();
+		}
+		else if(value){
+			response.write(JSON.stringify({'result' : 'Username has been registered!'}));
 			response.end();
 		}
 		else {
@@ -139,9 +155,10 @@ export class MyServer {
 	}
 
 	private async signUpHandler(request, response) : Promise<void> {
+		console.log("sign up handler");
 		let emptyArr: number[] = [];
 		await this.theDatabase.put_user_account(request.body.username, request.body.password, request.body.phone, request.body.email, null, emptyArr);
-		response.write(JSON.stringify({'result' : 'sign up',
+		response.write(JSON.stringify({'result' : 'succeed',
 				       	'username' : request.body.username,
 					   	'password' : request.body.password,
 						'phone' : request.body.phone,
@@ -205,7 +222,7 @@ export class MyServer {
 		let value : boolean = await this.theDatabase.isFound_shop(shopID);
 		if(!value){
 			//alert('Shop not Found!');
-			response.write(JSON.stringify({'result' : 'error'}));
+			response.write(JSON.stringify({'result' : 'Error: Shop Not Found!'}));
 			response.end();
 		}
 		else {
@@ -215,8 +232,13 @@ export class MyServer {
 
 	private async viewShopHandler(request, response) : Promise<void> {
 		let shopID = request.body.shop_id;
+		console.log("view_shop_id:" + shopID);
+		if(shopID === undefined) {
+			let user = await this.theDatabase.get_user(request.body.username);
+			shopID = user.shop_index;
+		}
 		let shop = await this.theDatabase.get_shop(shopID);
-		response.write(JSON.stringify({'result' : 'view shop',
+		response.write(JSON.stringify({'result' : 'succeed',
 										'id' : shop.id,
 										'owner' : shop.owner,
 										'name' : shop.name,
@@ -239,33 +261,54 @@ export class MyServer {
 											'image' : activity.image_src,
 											'time' : activity.time }));
 		}
+		response.end();
 	}
 
-	private async createShopHandler(request, response) : Promise<void> {
-		let username = request.body.username;
-		let user = await this.theDatabase.get_user(username);
-		if(user.shop_index !== null){
-			alert("You already have a shop!");
+	private async editShopErrorHandler(request, response, next) : Promise<void> {
+		let shop_name = request.body.shop_name;
+		let open_hour = request.body.open_hour;
+		let address = request.body.address;
+		let phone = request.body.phone;
+		if(shop_name === "") {
+			response.write(JSON.stringify({'result' : 'Please enter shop name.'}));
 			response.end();
-		} else {
-			let newID = await this.theDatabase.getNextShopID();
-			let emptyArr: String[] = [];
-			await this.theDatabase.put_user_shop(username, newID);
-			await this.theDatabase.put_shop(newID, username, request.body.name, request.body.type, request.body.open_hour,
-				request.body.address, request.body.phone, request.body.email, request.body.url, request.body.logo_src,
-				request.body.pic1_src, request.body.pic2_src, request.body.pic3_src, request.body.pic4_src,
-				null, 0, 0, emptyArr);
-			response.write(JSON.stringify({'result' : 'shop created'}));
+		}
+		else if(open_hour === "") {
+			response.write(JSON.stringify({'result' : 'Please select open hour.'}));
+			response.end();
+		}
+		else if(address === "") {
+			response.write(JSON.stringify({'result' : 'Please enter address.'}));
+			response.end();
+		}
+		else if(phone === "") {
+			response.write(JSON.stringify({'result' : 'Please enter phone number.'}));
+			response.end();
+		}
+		else {
+			next();
 		}
 	}
 
-	private async editShopHandler(request, response) : Promise<void> {
-		let shop = await this.theDatabase.get_shop(request.body.shop_id);
-		await this.theDatabase.put_shop(shop.id, shop.owner, request.body.name, request.body.type, request.body.open_hour,
-			request.body.address, request.body.phone, request.body.email, request.body.url, request.body.logo_src,
-			request.body.pic1_src, request.body.pic2_src, request.body.pic3_src, request.body.pic4_src,
-			shop.activity_index, shop.rate, shop.comment);
-		response.write(JSON.stringify({'result' : 'edit shop successfully'}));
+	private async editShopHandler(request, response, next) : Promise<void> {
+		let username = request.body.username;
+		let user = await this.theDatabase.get_user(username);
+		if(user.shop_index === null){
+			let newID = await this.theDatabase.getNextShopID();
+			let emptyArr: String[] = [];
+			await this.theDatabase.put_user_shop(username, newID);
+			await this.theDatabase.put_shop(newID, username, request.body.shop_name, request.body.type, request.body.open_hour,
+				request.body.address, request.body.phone, request.body.email, request.body.url, request.body.logo_src,
+				request.body.pic1_src, request.body.pic2_src, request.body.pic3_src, request.body.pic4_src,
+				null, 0, 0, emptyArr);
+		} else {
+			let shop = await this.theDatabase.get_shop(user.shop_index);
+			await this.theDatabase.put_shop(shop.id, shop.owner, request.body.shop_name, request.body.type, request.body.open_hour,
+				request.body.address, request.body.phone, request.body.email, request.body.url, request.body.logo_src,
+				request.body.pic1_src, request.body.pic2_src, request.body.pic3_src, request.body.pic4_src,
+				shop.activity_index, shop.rate, shop.rate_num, shop.comment);
+		}
+		next();
 	}
 
 	private async deleteShopHandler(request, response) : Promise<void> {
@@ -276,24 +319,38 @@ export class MyServer {
 		response.write(JSON.stringify({'result' : 'shop deleted'}));
 	}
 
+	private async rateShopErrorHandler(request, response, next) : Promise<void> {
+		if(request.body.rate === "") {
+			response.write(JSON.stringify({'result' : 'Please enter an integer in range from 0 to 5.'}));
+			response.end();
+		}
+		if(request.body.rate < 0 || request.body.rate > 5) {
+			response.write(JSON.stringify({'result' : 'Please enter an integer in range from 0 to 5.'}));
+			response.end();
+		}
+		else if(request.body.comment === "") {
+			response.write(JSON.stringify({'result' : 'Please enter something in your comment.'}));
+			response.end();
+		}
+		else {
+			next();
+		}
+	}
+
 	private async rateShopHandler(request, response) : Promise<void> {
-		let shopID = request.body.shop_id
+		let shopID = request.body.shop_id;
+		console.log(shopID);
 		let shop = await this.theDatabase.get_shop(shopID);
 		let curr_rate = shop.rate;
 		let rate_number = shop.rate_number + 1;
 		let new_rate = (curr_rate + request.body.rate)/rate_number;
 		await this.theDatabase.put_shop_rate(shopID, new_rate, rate_number);
-		response.write(JSON.stringify({'result' : 'shop rated', 'rate' : new_rate}));
-	}
 
-	private async commentShopHandler(request, response) : Promise<void> {
-		let shopID = request.body.shop_id
-		let shop = await this.theDatabase.get_shop(shopID);
 		let comments = shop.comment;
 		comments.push(request.body.comment);
 		await this.theDatabase.put_shop_comment(shopID, comments);
-		response.write(JSON.stringify({'result' : 'new comment added', 'comment' : comments}));
+		response.write(JSON.stringify({'result' : 'succeed', 'rate' : new_rate, 'comment' : comments}));
+		response.end();
 	}
-
 }
 

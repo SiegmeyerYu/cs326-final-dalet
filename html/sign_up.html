@@ -31,13 +31,26 @@
                 border:1px solid;
                 border-radius: 8px;
                 font-size:16pt;
-                margin:50px auto;
+                margin-top:50px;
                 display:block;
             }
             .button:hover {
                 background-color: rgb(140,3,252);
                 color:white;
                 text-decoration:none;
+            }
+            #signup {
+                float:left;
+                margin-left:50px;
+            }
+            #cancel {
+                float:right;
+                margin-right:50px;
+            }
+            #err_message {
+                color:red;
+                font-size:18pt;
+                margin-top:10px;
             }
         </style>
     </head>
@@ -83,6 +96,7 @@
             <button onclick="counterSignUp()" id="signup" class="button">Sign up</button>
             <button onclick="counterLoginCancel()" id="cancel" class="button">Cancel</button>
         </div>
+        <p id="err_message"></p>
     </body>
     <footer>
         <!-- Optional JavaScript -->

@@ -68,6 +68,13 @@ export class Database {
 		console.log('put_user_profile: result = ' + result);
 	}
 
+	public async put_user_shop(username: string, shop_index:number) : Promise<void> {
+		let db = this.client.db(this.dbName);
+		let collection = db.collection(this.collection_user);
+		let result = await collection.updateOne({'username' : username}, { $set : {'shop_index':shop_index} } );
+		console.log('put_user_shop: result = ' + result);
+	}
+
 	public async get_user(key: string) {
 		let db = this.client.db(this.dbName); 
 		let collection = db.collection(this.collection_user);
@@ -91,11 +98,25 @@ export class Database {
 		}
 	}
 
-	public async put_shop(id: number, owner: string, name: string, type: string, open_hour : string, address: string, phone: string, email: string, url: string, logo_src: string, pic1_src: string, pic2_src: string, pic3_src: string, pic4_src: string, activity_index : number, rate: number, comment: Array<String>) : Promise<void> {
+	public async put_shop(id: number, owner: string, name: string, type: string, open_hour : string, address: string, phone: string, email: string, url: string, logo_src: string, pic1_src: string, pic2_src: string, pic3_src: string, pic4_src: string, activity_index : number, rate: number, rate_num: number,comment: Array<String>) : Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collection_shop);
-		let result = await collection.updateOne({'id' : id}, { $set : { 'owner':owner, 'name':name, 'type':type, 'open_hour':open_hour, 'address':address, 'phone':phone, 'email':email, 'url':url, 'logo_src':logo_src, 'pic1_src':pic1_src, 'pic2_src':pic2_src, 'pic3_src':pic3_src, 'pic4_src':pic4_src, 'activity_index':activity_index, 'rate':rate, 'comment':comment} }, { 'upsert' : true } );
+		let result = await collection.updateOne({'id' : id}, { $set : { 'owner':owner, 'name':name, 'type':type, 'open_hour':open_hour, 'address':address, 'phone':phone, 'email':email, 'url':url, 'logo_src':logo_src, 'pic1_src':pic1_src, 'pic2_src':pic2_src, 'pic3_src':pic3_src, 'pic4_src':pic4_src, 'activity_index':activity_index, 'rate':rate, 'rate_num':rate_num,'comment':comment} }, { 'upsert' : true } );
 		console.log("put_shop: result = " + result);
+	}
+
+	public async put_shop_rate(id: number, rate: number, rate_num: number) : Promise<void> {
+		let db = this.client.db(this.dbName);
+		let collection = db.collection(this.collection_shop);
+		let result = await collection.updateOne({'id' : id}, { $set : {'rate':rate, 'rate_num':rate_num}});
+		console.log("put_shop_rate: result = " + result);
+	}
+
+	public async put_shop_comment(id: number, comment: Array<String>) : Promise<void> {
+		let db = this.client.db(this.dbName);
+		let collection = db.collection(this.collection_shop);
+		let result = await collection.updateOne({'id' : id}, { $set : {'comment':comment}});
+		console.log("put_shop_comment: result = " + result);
 	}
 
 	public async get_shop(key: number) {
@@ -178,45 +199,4 @@ export class Database {
 		return result;
 	}
 
-	/*
-    public async put(key: string, value: string) : Promise<void> {
-	let db = this.client.db(this.dbName);
-	let collection = db.collection(this.collectionName);
-	console.log("put: key = " + key + ", value = " + value);
-	let result = await collection.updateOne({'name' : key}, { $set : { 'value' : value} }, { 'upsert' : true } );
-	console.log("result = " + result);
-    }
-
-    public async get(key: string) : Promise<string> {
-	let db = this.client.db(this.dbName); 
-	let collection = db.collection(this.collectionName);
-	console.log("get: key = " + key);
-	let result = await collection.findOne({'name' : key });
-	console.log("get: returned " + JSON.stringify(result));
-	if (result) {
-	    return result.value;
-	} else {
-	    return null;
-	}
-    }
-    
-    public async del(key: string) : Promise<void> {
-	let db = this.client.db(this.dbName);
-	let collection = db.collection(this.collectionName);
-	console.log("delete: key = " + key);
-	let result = await collection.deleteOne({'name' : key });
-	console.log("result = " + result);
-    }
-    
-    public async isFound(key: string) : Promise<boolean>  {
-	console.log("isFound: key = " + key);
-	let v = await this.get(key);
-	console.log("is found result = " + v);
-	if (v === null) {
-	    return false;
-	} else {
-	    return true;
-	}
-	}
-	*/
 }
