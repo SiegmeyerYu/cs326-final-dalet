@@ -7,15 +7,11 @@ export class Database {
     private client;
 	private collection_user : string;
 	private collection_shop : string;
-	private collection_activity : string;
-	private shop_next : number = 0;
-	private activity_next : number = 0;
     private dbName : string = "dalet";
 
-    constructor(user, shop, activity) {
+    constructor(user, shop) {
 	this.collection_user = user;
 	this.collection_shop = shop;
-	this.collection_activity = activity;
 	this.client = new this.MongoClient(this.uri, { useNewUrlParser: true });
 	// Open up a connection to the client.
 	// The connection is asynchronous, but we can't call await directly
@@ -40,35 +36,21 @@ export class Database {
 	})();
     }
 
-	// Get ID number for new created shop
-	// Increment ID number for next shop
-	public async getNextShopID() : Promise<number>{
-		let result = this.shop_next;
-		this.shop_next++;
-		return result;
-	}
-
-	public async getNextActivityID() : Promise<number>{
-		let result = this.activity_next;
-		this.activity_next++;
-		return result;
-	}
-
-	public async put_user_account(username: string, password : string, phone : string, email : string, shop_index : number, activity_array : Array<number>) : Promise<void> {
+	public async put_user_account(username: string, password : string, phone : string, email : string, shop_index : string, activity_array : Array<number>) : Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collection_user);
 		let result = await collection.updateOne({'username' : username}, { $set : {'password' : password, 'phone' : phone, 'email' : email, 'shop_index' : shop_index, 'activity_index' : activity_array } }, {'upsert' : true} );
 		console.log('put_user_account: result = ' + result);
 	}
 
-	public async put_user_profile(username: string, alias: string, portrait_src : string, location : string, description : string, pet1_name : string, pet2_name : string, pet1_src : string, pet2_src : string) : Promise<void> {
+	public async put_user_profile(username: string, alias: string, portrait_src : any, location : string, description : string, pet1_name : string, pet2_name : string, pet1_src : any, pet2_src : any) : Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collection_user);
 		let result = await collection.updateOne({'username' : username}, { $set : {'alias': alias, 'portrait_src' : portrait_src, 'location' : location, 'description' : description, 'pet1_name' : pet1_name, 'pet2_name' : pet2_name , 'pet1_src' : pet1_src, 'pet2_src' : pet2_src } }, {'upsert' : true} );
 		console.log('put_user_profile: result = ' + result);
 	}
 
-	public async put_user_shop(username: string, shop_index:number) : Promise<void> {
+	public async put_user_shop(username: string, shop_index:string) : Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collection_user);
 		let result = await collection.updateOne({'username' : username}, { $set : {'shop_index':shop_index} } );
@@ -98,27 +80,14 @@ export class Database {
 		}
 	}
 
-	public async put_shop(id: number, owner: string, name: string, type: string, open_hour : string, address: string, phone: string, email: string, url: string, logo_src: string, pic1_src: string, pic2_src: string, pic3_src: string, pic4_src: string, activity_index : number, rate: number, rate_num: number,comment: Array<String>) : Promise<void> {
+	public async put_shop( owner: string, name: string, type: string, open_hour : string, address: string, phone: string, email: string, url: string, logo_src: any, pic1_src: any, pic2_src: any, pic3_src: any, pic4_src: any) : Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collection_shop);
-		let result = await collection.updateOne({'id' : id}, { $set : { 'owner':owner, 'name':name, 'type':type, 'open_hour':open_hour, 'address':address, 'phone':phone, 'email':email, 'url':url, 'logo_src':logo_src, 'pic1_src':pic1_src, 'pic2_src':pic2_src, 'pic3_src':pic3_src, 'pic4_src':pic4_src, 'activity_index':activity_index, 'rate':rate, 'rate_num':rate_num,'comment':comment} }, { 'upsert' : true } );
+		let result = await collection.updateOne({'name' : name}, { $set : { 'owner':owner, 'type':type, 'open_hour':open_hour, 'address':address, 'phone':phone, 'email':email, 'url':url, 'logo_src':logo_src, 'pic1_src':pic1_src, 'pic2_src':pic2_src, 'pic3_src':pic3_src, 'pic4_src':pic4_src} }, { 'upsert' : true } );
 		console.log("put_shop: result = " + result);
 	}
 
-	public async put_shop_rate(id: number, rate: number, rate_num: number) : Promise<void> {
-		let db = this.client.db(this.dbName);
-		let collection = db.collection(this.collection_shop);
-		let result = await collection.updateOne({'id' : id}, { $set : {'rate':rate, 'rate_num':rate_num}});
-		console.log("put_shop_rate: result = " + result);
-	}
-
-	public async put_shop_comment(id: number, comment: Array<String>) : Promise<void> {
-		let db = this.client.db(this.dbName);
-		let collection = db.collection(this.collection_shop);
-		let result = await collection.updateOne({'id' : id}, { $set : {'comment':comment}});
-		console.log("put_shop_comment: result = " + result);
-	}
-
+	/*
 	public async get_shop(key: number) {
 		let db = this.client.db(this.dbName); 
 		let collection = db.collection(this.collection_shop);
@@ -130,8 +99,21 @@ export class Database {
 			return null;
 		}
 	}
+	*/
 
-	public async isFound_shop(key: number) : Promise<boolean>  {
+	public async get_shop(key: string) {
+		let db = this.client.db(this.dbName); 
+		let collection = db.collection(this.collection_shop);
+		let result = await collection.findOne({'name' : key });
+		console.log("get_shop: returned " + JSON.stringify(result));
+		if (result) {
+			return result;
+		} else {
+			return null;
+		}
+	}
+
+	public async isFound_shop(key: string) : Promise<boolean>  {
 		let v = await this.get_shop(key);
 		console.log("isFound_shop: result = " + v);
 		if (v === null) {
@@ -141,6 +123,7 @@ export class Database {
 		}
 	}
 
+	/*
 	public async put_activity(id: number, name:string, image_src:string, time:string, address:string, phone:string, email:string, decription:string, member:Array<String>) : Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collection_activity);
@@ -169,6 +152,7 @@ export class Database {
 			return true;
 		}
 	}
+	*/
 
 	//for customer.html searchbar
 	public async serach_shop(key: string,type:string){

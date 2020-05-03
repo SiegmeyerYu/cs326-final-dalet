@@ -33,20 +33,11 @@ export class MyServer {
 	this.router.post('/home', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
 
 	this.router.post('/profile', [this.userNotFoundHandler.bind(this), this.readProfileHandler.bind(this)]);
-	this.router.post('/profile_edit', [this.userNotFoundHandler.bind(this), this.editProfileHandler.bind(this)]);
+	this.router.post('/profile_edit', [this.userNotFoundHandler.bind(this), this.editProfileHandler.bind(this), this.readProfileHandler.bind(this)]);
 
 	this.router.post('/shop', [this.shopNotFoundHandler.bind(this), this.viewShopHandler.bind(this)]); //done
-	//this.router.post('/shop_create', this.createShopHandler.bind(this));
 	this.router.post('/shop_edit', [this.editShopErrorHandler.bind(this), this.editShopHandler.bind(this), this.viewShopHandler.bind(this)]); //done
 	this.router.post('/shop_delete', [this.shopNotFoundHandler.bind(this), this.deleteShopHandler.bind(this)]); //done
-	this.router.post('/shop_rate', [this.rateShopErrorHandler.bind(this), this.rateShopHandler.bind(this)]); //done
-
-	this.router.post('/activity', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
-	this.router.post('/act_create', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
-	this.router.post('/act_edit', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
-	this.router.post('/act_delete', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
-	this.router.post('/act_join', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
-	this.router.post('/act_quit', [this.toBeDefinedError.bind(this), this.toBeDefined.bind(this)]);
 
 	//this.router.post('/search',[this.shopNotFoundHandler.bind(this),this.viewSearchResultHandler.bind(this)]);
 	//for test purpose excluded shopenotfoundhandler
@@ -93,6 +84,7 @@ export class MyServer {
 
 	private async userNotFoundHandler(request, response, next) : Promise<void> {
 		let username = request.body.username;
+		console.log("check3: "+username);
 		let value : boolean = await this.theDatabase.isFound_user(username);
 		console.log(value);
 		if(!value){
@@ -171,37 +163,43 @@ export class MyServer {
 	private async readProfileHandler(request, response) : Promise<void> {
 		let username = request.body.username;
 		let user = await this.theDatabase.get_user(username);
-		response.write(JSON.stringify({'result' : 'read profile',
-				    	'username' : username,
-						'alias' : user.alias,
-						'portrait_src' : user.portrait_src, 
-						'location' : user.location, 
-						'description' : user.description, 
-						'pet1_name' : user.pet1_name, 
-						'pet2_name' : user.pet2_name , 
-						'pet1_src' : user.pet1_src, 
-						'pet2_src' : user.pet2_src }));
 		if(user.shop_index !== null){
 			let shop = await this.theDatabase.get_shop(user.shop_index);
-			response.write(JSON.stringify({'shop_name' : shop.name,
-						'logo' : shop.logo_src,
-						'type' : shop.type,
-						'address' : shop.address,
-						'rate' : shop.rate }));
+			response.write(JSON.stringify({'result' : 'succeed',
+			'username' : username,
+			'alias' : user.alias,
+			'portrait_src' : user.portrait_src, 
+			'location' : user.location, 
+			'description' : user.description, 
+			'pet1_name' : user.pet1_name, 
+			'pet2_name' : user.pet2_name , 
+			'pet1_src' : user.pet1_src, 
+			'pet2_src' : user.pet2_src,
+			'shop_name' : shop.name,
+			'logo' : shop.logo_src,
+			'type' : shop.type,
+			'address' : shop.address}));
 		}
-		if(user.activity_array.length !== 0) {
-			let activity;
-			for(let i = 0; i < user.activity_array.length; i++){
-				activity = await this.theDatabase.get_activity(user.activity_array[i]);
-				response.write(JSON.stringify({'activity_name' : activity.name,
-						'image' : activity.image_src,
-						'time' : activity.time }));
-			}
+		else {
+			response.write(JSON.stringify({'result' : 'succeed',
+			'username' : username,
+			'alias' : user.alias,
+			'portrait_src' : user.portrait_src, 
+			'location' : user.location, 
+			'description' : user.description, 
+			'pet1_name' : user.pet1_name, 
+			'pet2_name' : user.pet2_name , 
+			'pet1_src' : user.pet1_src, 
+			'pet2_src' : user.pet2_src,
+			'shop_name' : null,
+			'logo' : null,
+			'type' : null,
+			'address' : null}));
 		}
 		response.end();
 	}
 
-	private async editProfileHandler(request, response) : Promise<void> {
+	private async editProfileHandler(request, response, next) : Promise<void> {
 		await this.theDatabase.put_user_profile(request.body.username, 
 												request.body.alias, 
 												request.body.portrait_src, 
@@ -211,15 +209,12 @@ export class MyServer {
 												request.body.pet2_name,
 												request.body.pet1_src,
 												request.body.pet2_src);
-		response.write(JSON.stringify({'result' : 'edit profile successfully'}));
-		response.end();
+		next();
 	}
 
-
-
 	private async shopNotFoundHandler(request, response, next) : Promise<void> {
-		let shopID = request.body.id;
-		let value : boolean = await this.theDatabase.isFound_shop(shopID);
+		let shop_name = request.body.name;
+		let value : boolean = await this.theDatabase.isFound_shop(shop_name);
 		if(!value){
 			//alert('Shop not Found!');
 			response.write(JSON.stringify({'result' : 'Error: Shop Not Found!'}));
@@ -231,15 +226,14 @@ export class MyServer {
 	}
 
 	private async viewShopHandler(request, response) : Promise<void> {
-		let shopID = request.body.shop_id;
-		console.log("view_shop_id:" + shopID);
-		if(shopID === undefined) {
+		let shop_name = request.body.name;
+		console.log("view_shop_id:" + shop_name);
+		if(shop_name === undefined) {
 			let user = await this.theDatabase.get_user(request.body.username);
-			shopID = user.shop_index;
+			shop_name = user.shop_index;
 		}
-		let shop = await this.theDatabase.get_shop(shopID);
+		let shop = await this.theDatabase.get_shop(shop_name);
 		response.write(JSON.stringify({'result' : 'succeed',
-										'id' : shop.id,
 										'owner' : shop.owner,
 										'name' : shop.name,
 										'type' : shop.type,
@@ -252,15 +246,7 @@ export class MyServer {
 										'picture1' : shop.pic1_src,
 										'picture2' : shop.pic2_src,
 										'picture3' : shop.pic3_src,
-										'picture4' : shop.pic4_src,
-										'rate' : shop.rate,
-										'comment' : shop.comment }));
-		if(shop.activity_index !== null) {
-			let activity = await this.theDatabase.get_activity(shop.activity_index);
-			response.write(JSON.stringify({'activity_name' : activity.name,
-											'image' : activity.image_src,
-											'time' : activity.time }));
-		}
+										'picture4' : shop.pic4_src}));
 		response.end();
 	}
 
@@ -269,6 +255,7 @@ export class MyServer {
 		let open_hour = request.body.open_hour;
 		let address = request.body.address;
 		let phone = request.body.phone;
+		let value : boolean = await this.theDatabase.isFound_shop(shop_name);
 		if(shop_name === "") {
 			response.write(JSON.stringify({'result' : 'Please enter shop name.'}));
 			response.end();
@@ -285,29 +272,26 @@ export class MyServer {
 			response.write(JSON.stringify({'result' : 'Please enter phone number.'}));
 			response.end();
 		}
+		else if(value) {
+			response.write(JSON.stringify({'result' : 'Shop Name has been regiestered. Please change it.'}));
+			response.end();
+		}
 		else {
 			next();
 		}
 	}
 
 	private async editShopHandler(request, response, next) : Promise<void> {
+		let shop_name = request.body.shop_name;
 		let username = request.body.username;
 		let user = await this.theDatabase.get_user(username);
 		if(user.shop_index === null){
-			let newID = await this.theDatabase.getNextShopID();
-			let emptyArr: String[] = [];
-			await this.theDatabase.put_user_shop(username, newID);
-			await this.theDatabase.put_shop(newID, username, request.body.shop_name, request.body.type, request.body.open_hour,
-				request.body.address, request.body.phone, request.body.email, request.body.url, request.body.logo_src,
-				request.body.pic1_src, request.body.pic2_src, request.body.pic3_src, request.body.pic4_src,
-				null, 0, 0, emptyArr);
-		} else {
-			let shop = await this.theDatabase.get_shop(user.shop_index);
-			await this.theDatabase.put_shop(shop.id, shop.owner, request.body.shop_name, request.body.type, request.body.open_hour,
-				request.body.address, request.body.phone, request.body.email, request.body.url, request.body.logo_src,
-				request.body.pic1_src, request.body.pic2_src, request.body.pic3_src, request.body.pic4_src,
-				shop.activity_index, shop.rate, shop.rate_num, shop.comment);
+			console.log("new shop created.");
+			await this.theDatabase.put_user_shop(username, shop_name);
 		}
+		await this.theDatabase.put_shop(username, request.body.shop_name, request.body.type, request.body.open_hour,
+			request.body.address, request.body.phone, request.body.email, request.body.url, request.body.logo_src,
+			request.body.pic1_src, request.body.pic2_src, request.body.pic3_src, request.body.pic4_src);
 		next();
 	}
 
@@ -317,40 +301,6 @@ export class MyServer {
 		await this.theDatabase.delete_shop(user.shop_index);
 		await this.theDatabase.put_user_shop(username, null);
 		response.write(JSON.stringify({'result' : 'shop deleted'}));
-	}
-
-	private async rateShopErrorHandler(request, response, next) : Promise<void> {
-		if(request.body.rate === "") {
-			response.write(JSON.stringify({'result' : 'Please enter an integer in range from 0 to 5.'}));
-			response.end();
-		}
-		if(request.body.rate < 0 || request.body.rate > 5) {
-			response.write(JSON.stringify({'result' : 'Please enter an integer in range from 0 to 5.'}));
-			response.end();
-		}
-		else if(request.body.comment === "") {
-			response.write(JSON.stringify({'result' : 'Please enter something in your comment.'}));
-			response.end();
-		}
-		else {
-			next();
-		}
-	}
-
-	private async rateShopHandler(request, response) : Promise<void> {
-		let shopID = request.body.shop_id;
-		console.log(shopID);
-		let shop = await this.theDatabase.get_shop(shopID);
-		let curr_rate = shop.rate;
-		let rate_number = shop.rate_number + 1;
-		let new_rate = (curr_rate + request.body.rate)/rate_number;
-		await this.theDatabase.put_shop_rate(shopID, new_rate, rate_number);
-
-		let comments = shop.comment;
-		comments.push(request.body.comment);
-		await this.theDatabase.put_shop_comment(shopID, comments);
-		response.write(JSON.stringify({'result' : 'succeed', 'rate' : new_rate, 'comment' : comments}));
-		response.end();
 	}
 }
 

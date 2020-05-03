@@ -129,46 +129,25 @@
             <img alt="portrait" src="./images/user_default.png" id="portrait">
             <button onclick="window.location.href = './profile_edit.html';" id="edit">Edit Profile</button>
             <h2 id="alias">Alias</h2>
-            <p>Location</p>
+            <p id="location">Location</p>
             <div id="description">
                 <p>Description:</p>
-                <p><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>blablabbalblabal balba lbaabl lablablabalbalabalba blablbalbl balbalabl balb lab lblablablblabl</p>
+                <p id="desc">You didn't write any description.</p>
             </div>
         </div>
 
         <div id="pet">
-            <h2 class="petname">Pet Name</h2>
-            <img class="pet_image" alt="pet image" src="">
+            <h2 class="petname" id="pet1n">Pet Name</h2>
+            <img class="pet_image" alt="pet image" src="" id="pet1i">
         </div>
 
         <div id="shop">
             <h2>Shop</h2>
-            <a href="./shop.html" target="_blank" class="shop_link">
-                <div class="shop_block">
-                    <img alt="shop image" src="" class="shop_img">
-                    <p class="shop_name">Shop Name</p>
-                    <p>Feature/Type</p>
-                    <p>Address</p>
-                </div>
-            </a>
-            <button id="delete" onclick="counterShopDelete()">Delete Shop</button>
+            <button id="add" onclick="window.location.href='./shop_edit.html';">Create Your Shop</button>
         </div>
 
-        <div id="activity">
-            <h2>Activity</h2>
-            <a href="./activity.html" target="_blank" class="shop_link">
-                <div class="shop_block">
-                    <img alt="activity image" src="" class="shop_img">
-                    <p class="shop_name">Activity Name</p>
-                    <p>Time: 8:00 - 17:00</p>
-                    <p>Date: April 1st</p>
-                </div>
-            </a>
-
-            <div>
-                <p id="output"></p>
-            </div>
-        </div>
+        <p id="username*" hidden></p>
+        <p id="output"></p>
         
     </body>
     <footer>
@@ -181,25 +160,37 @@
         <script src="client.js"></script>
         <script>
             const init = function(e) {
-                let result = localStorage.getItem('profile_edit_result');
                 let alias = localStorage.getItem('alias');
-                if (result === "succeed") {
-                    document.getElementById("output").innerHTML = "101: <b>" + alias + "\'s profile edited successfully.</b>";
-                } 
-                else if (result === "fail") {
-                    document.getElementById("output").innerHTML = "100: " + alias + " not found.</b>";
-                }
-                localStorage.removeItem('profile_edit_result');
+                let username = localStorage.getItem('username');
+                let portrait = localStorage.getItem('portrait');
+                let location = localStorage.getItem('location');
+                let description = localStorage.getItem('description');
+                let pet_name = localStorage.getItem('pet1_name');
+                let pet_img = localStorage.getItem('pet1_src');
+                let shop_name = localStorage.getItem('shop_name');
+                console.log("check1: "+shop_name);
+                let logo = localStorage.getItem('logo');
+                let type = localStorage.getItem('type');
+                let address = localStorage.getItem('address');
 
-                result = localStorage.getItem('shop_delete_result');
-                if (result === "succeed") {
-                    document.getElementById("output").innerHTML = "201: <b>" + alias + "\'s shop is deleted successfully.</b>";
-                } 
-                else if (result === "fail") {
-                    document.getElementById("output").innerHTML = "200: " + alias + " not found.</b>";
+                document.getElementById("username*").textContent = username;
+                document.getElementById("alias").textContent = alias;
+                //document.getElementById("portrait") = portrait;
+                document.getElementById("location").textContent = location;
+
+                if(description !== ""){
+                    document.getElementById("desc").textContent = description;
                 }
-                localStorage.removeItem('shop_delete_result');
-                localStorage.removeItem('alias');
+
+                if(pet_name !== ""){
+                    document.getElementById("pet").innerHTML = '<h2 class="petname" id="pet1n">' + pet_name + '</h2><img class="pet_image" alt="pet image" src="">';
+                }
+
+                if(shop_name !== "null") {
+                    document.getElementById("shop").innerHTML = '<a href="./shop.html" target="_blank" class="shop_link"><div class="shop_block">' +
+                        '<img alt="shop image" src="" class="shop_img"><p class="shop_name">'+shop_name+'</p><p>'+type+'</p>' +
+                        '<p>'+address+'</p></div></a><button id="delete" onclick="counterShopDelete()">Delete Shop</button>';
+                }
             }
             document.addEventListener('DOMContentLoaded', function(){init();});
         </script>
