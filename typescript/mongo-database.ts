@@ -83,27 +83,14 @@ export class Database {
 	public async put_shop( owner: string, name: string, type: string, open_hour : string, address: string, phone: string, email: string, url: string, logo_src: any, pic1_src: any, pic2_src: any, pic3_src: any, pic4_src: any) : Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collection_shop);
-		let result = await collection.updateOne({'name' : name}, { $set : { 'owner':owner, 'type':type, 'open_hour':open_hour, 'address':address, 'phone':phone, 'email':email, 'url':url, 'logo_src':logo_src, 'pic1_src':pic1_src, 'pic2_src':pic2_src, 'pic3_src':pic3_src, 'pic4_src':pic4_src} }, { 'upsert' : true } );
+		let result = await collection.updateOne({'owner' : owner}, { $set : { 'name':name, 'type':type, 'open_hour':open_hour, 'address':address, 'phone':phone, 'email':email, 'url':url, 'logo_src':logo_src, 'pic1_src':pic1_src, 'pic2_src':pic2_src, 'pic3_src':pic3_src, 'pic4_src':pic4_src} }, { 'upsert' : true } );
 		console.log("put_shop: result = " + result);
 	}
-
-	/*
-	public async get_shop(key: number) {
-		let db = this.client.db(this.dbName); 
-		let collection = db.collection(this.collection_shop);
-		let result = await collection.findOne({'id' : key });
-		console.log("get_shop: returned " + JSON.stringify(result));
-		if (result) {
-			return result;
-		} else {
-			return null;
-		}
-	}
-	*/
 
 	public async get_shop(key: string) {
 		let db = this.client.db(this.dbName); 
 		let collection = db.collection(this.collection_shop);
+		console.log("check get_shop: "+key);
 		let result = await collection.findOne({'name' : key });
 		console.log("get_shop: returned " + JSON.stringify(result));
 		if (result) {
@@ -123,39 +110,16 @@ export class Database {
 		}
 	}
 
-	/*
-	public async put_activity(id: number, name:string, image_src:string, time:string, address:string, phone:string, email:string, decription:string, member:Array<String>) : Promise<void> {
+	public async delete_shop(key:string) : Promise<void> {
 		let db = this.client.db(this.dbName);
-		let collection = db.collection(this.collection_activity);
-		let result = await collection.updateOne({'id' : id}, { $set : { 'name':name, 'image_src':image_src, 'time':time, 'address':address, 'phone':phone, 'email':email, 'decription':decription, 'member':member} }, { 'upsert' : true } );
-		console.log("put_activity: result = " + result);
+		let collection = db.collection(this.collection_shop);
+		let result = await collection.deleteOne({'name' : key });
+		console.log("result = " + result);
 	}
 
-	public async get_activity(key: number) : Promise<string> {
-		let db = this.client.db(this.dbName); 
-		let collection = db.collection(this.collection_activity);
-		let result = await collection.findOne({'id' : key });
-		console.log("get_activity: returned " + JSON.stringify(result));
-		if (result) {
-			return result;
-		} else {
-			return null;
-		}
-	}
-
-	public async isFound_activity(key: number){
-		let v = await this.get_activity(key);
-		console.log("isFound_activity: result = " + v);
-		if (v === null) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-	*/
 
 	//for customer.html searchbar
-	public async serach_shop(key: string,type:string){
+	public async search_shop(key: string,type:string){
 		/*
 		let db = this.client.db(this.dbName); 
 		let collection = db.collection(this.collection_user);

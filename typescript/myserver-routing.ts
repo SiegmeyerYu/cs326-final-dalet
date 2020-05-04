@@ -37,7 +37,7 @@ export class MyServer {
 
 	this.router.post('/shop', [this.shopNotFoundHandler.bind(this), this.viewShopHandler.bind(this)]); //done
 	this.router.post('/shop_edit', [this.editShopErrorHandler.bind(this), this.editShopHandler.bind(this), this.viewShopHandler.bind(this)]); //done
-	this.router.post('/shop_delete', [this.shopNotFoundHandler.bind(this), this.deleteShopHandler.bind(this)]); //done
+	this.router.post('/shop_delete', this.deleteShopHandler.bind(this)); //done
 
 	//this.router.post('/search',[this.shopNotFoundHandler.bind(this),this.viewSearchResultHandler.bind(this)]);
 	//for test purpose excluded shopenotfoundhandler
@@ -214,6 +214,7 @@ export class MyServer {
 
 	private async shopNotFoundHandler(request, response, next) : Promise<void> {
 		let shop_name = request.body.name;
+		console.log("check shop not found error, shop name: " + shop_name);
 		let value : boolean = await this.theDatabase.isFound_shop(shop_name);
 		if(!value){
 			//alert('Shop not Found!');
@@ -255,7 +256,9 @@ export class MyServer {
 		let open_hour = request.body.open_hour;
 		let address = request.body.address;
 		let phone = request.body.phone;
+		let username = request.body.username;
 		let value : boolean = await this.theDatabase.isFound_shop(shop_name);
+		let user = await this.theDatabase.get_user(username);
 		if(shop_name === "") {
 			response.write(JSON.stringify({'result' : 'Please enter shop name.'}));
 			response.end();
@@ -272,7 +275,7 @@ export class MyServer {
 			response.write(JSON.stringify({'result' : 'Please enter phone number.'}));
 			response.end();
 		}
-		else if(value) {
+		else if(value && user.shop_index !== shop_name) {
 			response.write(JSON.stringify({'result' : 'Shop Name has been regiestered. Please change it.'}));
 			response.end();
 		}
@@ -285,10 +288,8 @@ export class MyServer {
 		let shop_name = request.body.shop_name;
 		let username = request.body.username;
 		let user = await this.theDatabase.get_user(username);
-		if(user.shop_index === null){
-			console.log("new shop created.");
-			await this.theDatabase.put_user_shop(username, shop_name);
-		}
+
+		await this.theDatabase.put_user_shop(username, shop_name);
 		await this.theDatabase.put_shop(username, request.body.shop_name, request.body.type, request.body.open_hour,
 			request.body.address, request.body.phone, request.body.email, request.body.url, request.body.logo_src,
 			request.body.pic1_src, request.body.pic2_src, request.body.pic3_src, request.body.pic4_src);
@@ -298,9 +299,11 @@ export class MyServer {
 	private async deleteShopHandler(request, response) : Promise<void> {
 		let username = request.body.username;
 		let user = await this.theDatabase.get_user(username);
+		console.log("checkpoint");
 		await this.theDatabase.delete_shop(user.shop_index);
 		await this.theDatabase.put_user_shop(username, null);
-		response.write(JSON.stringify({'result' : 'shop deleted'}));
+		response.write(JSON.stringify({'result' : 'succeed'}));
+		response.end();
 	}
 }
 
