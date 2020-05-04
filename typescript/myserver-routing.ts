@@ -71,9 +71,7 @@ export class MyServer {
 		let shoptype=request.body.shoptype;
 		let shop = await this.theDatabase.serach_shop(keyword,shoptype);
 		response.write(JSON.stringify({'result' : 'serach',
-
-
-		'name' : shop.name,
+	    'name' : shop.name,
 		'type' : shop.type,
 		'address' : shop.address,
 		'phone' : shop.phone,

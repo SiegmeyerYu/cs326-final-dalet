@@ -119,7 +119,7 @@ export class Database {
 
 
 	//for customer.html searchbar
-	public async search_shop(key: string,type:string){
+	public async serach_shop(key: string,type:string){
 		
 		let db = this.client.db(this.dbName); 
 		let collection = db.collection(this.collection_user);
