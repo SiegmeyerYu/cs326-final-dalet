@@ -160,16 +160,12 @@ color: cornflowerblue;
 
  
 </result>
-        
-        
-        
-            </section>
+    </section>
         </body>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 
  <script>
-     console.log("customer page"+localStorage.getItem('islogin'));
-if(localStorage.getItem('islogin')==="true"){
+    if(localStorage.getItem('islogin')==="true"){
     document.getElementById("profile").innerHTML="<button id=\"profileBtn\" onclick=\"counterProfileRead()\">Profile</button>";
     document.getElementById("signup").innerHTML="";
     document.getElementById("login").innerHTML="";

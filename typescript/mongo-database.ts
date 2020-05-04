@@ -120,23 +120,18 @@ export class Database {
 
 	//for customer.html searchbar
 	public async search_shop(key: string,type:string){
-		/*
+		
 		let db = this.client.db(this.dbName); 
 		let collection = db.collection(this.collection_user);
-		var cursor;
 		if(type=="N/A"){
-		let cursor = await collection.find({'key' : key})}
-		else{
-		let cursor = await collection.find({'key' : key,'type':type})
-		}						
-		let result = cursor.hasNext()?cursor.next():null;
-		console.log("search_shop" + JSON.stringify(result));
-		if (result) {
-			return result;
-		} else {
-			return null;
+		let result=await collection.find( {
+			name: {$regex:new RegExp(key,"g")}});
 		}
-		*/
+		else{
+			let result=await collection.find({'name': {"$regex":new RegExp(key,"g")},'type':type});
+		}
+
+		/*
 		let result={'result' : 'search',
 		'name' : "Petpaw",
 		'type' : "Hospital",
@@ -145,6 +140,7 @@ export class Database {
 		'logo_src' : "<img alt=\"store\" src=\"./images/cat-example.jpg\">",
 		'rate' : "5 stars" }
 		return result;
+		*/
 	}
 
 }
