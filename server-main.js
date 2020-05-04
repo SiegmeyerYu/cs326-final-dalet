@@ -1,7 +1,8 @@
 'use strict';
-exports.__esModule = true;
-var mongo_database_1 = require("./mongo-database");
-var myserver_routing_1 = require("./myserver-routing");
-var theDatabase = new mongo_database_1.Database('user', 'shop', 'activity');
-var theServer = new myserver_routing_1.MyServer(theDatabase);
-theServer.listen(8080);
+Object.defineProperty(exports, "__esModule", { value: true });
+const mongo_database_1 = require("./mongo-database");
+const myserver_routing_1 = require("./myserver-routing");
+const theDatabase = new mongo_database_1.Database('user', 'shop');
+const theServer = new myserver_routing_1.MyServer(theDatabase);
+var port = process.env.PORT || 8080;
+theServer.listen(port);
