@@ -26,8 +26,8 @@
         max-width: 100%;
         display: grid;
         grid-template-columns: 30% 70%;
-        grid-template-rows: 80px 60% 450px 550px;
-        grid-template-areas: "head head" "main  main" "left  right" "left right";
+        grid-template-rows: 80px 100%;
+        grid-template-areas: "head head" "main  main";
     }
     
     #page > header {
@@ -95,9 +95,14 @@
         color: blanchedalmond;
        
     }
-    
     #customerBtn {
         margin-left: 70%;
+        margin-top:-25%;
+    }
+    #merchantBtn{
+        margin-left: 20%;
+        margin-top:-25%;
+
     }
     right img{
         width:640px;
@@ -122,9 +127,9 @@
     <section id="page">
 
         <header>
-            <button id="profileBtn" onclick="counterProfileRead()">Profile</button>
-            <button id="signupBtn"onclick="window.location.href = './sign_up.html';">Sign up</button>
-            <button id="loginBtn" onclick="window.location.href = './log_in.html';">Log in</button>
+            <div id="profile"></div>
+            <div id="signup"><button id="signupBtn"onclick="window.location.href = './sign_up.html';">Sign up</button></div>
+            <div id="login"><button id="loginBtn" onclick="window.location.href = './log_in.html';">Log in</button></div>
         </header>
 
         <main>
@@ -134,38 +139,35 @@
             <img alt="mainpage_picture" src="./images/mainpage_picture.jpg">
 
         </main>
-        <left>Store showcase</left>
-        <right>
-            <div class=activity>
-            <label id="rightTitle">pet activity showcase</label>
-            <label>
-            <div>latest event:</div>
-            <div>corgi pool party</div>
-            </label>
-            <div><img alt="event" src=./images/corgi_pool_party.jpg>
-            </div>
-        </right>
 
     </section>
 
     <div><p id="output"></p></div>
-    <p id="username*" hidden></p>
-
+    <p id="username*" hidden>eaf</p>
+   
 </body>
 
 <script src="client.js"></script>
 <script>
-    const init = function(e) {
-        let result = localStorage.getItem('result');
-        let username = localStorage.getItem('username');
-        if (result === "succeed") {
-            document.getElementById("output").innerHTML = "101: <b>" + username + " log in successfully.</b>";
-            document.getElementById("username*").innerHTML = username;
-        } 
-        else if (result === "fail") {
-            window.location.href = "./sign_up.html";
-        }
+ //Check if user already log in(if user logged in,his name will be stored in hidden section) 
+ //if logged in,display profile button,and remove signup,login button.
+    if(document.getElementById("username*").innerText!==""){
+      document.getElementById("profile").innerHTML="<button id=\"profileBtn\" onclick=\"counterProfileRead()\">Profile</button>";
+      document.getElementById("signup").innerHTML="";
+      document.getElementById("login").innerHTML="";
+      localStorage.setItem('islogin',"true");
     }
-    document.addEventListener('DOMContentLoaded', function(){init();});
-</script>
+      const init = function(e) {
+          let result = localStorage.getItem('result');
+          let username = localStorage.getItem('username');
+          if (result === "succeed") {
+              document.getElementById("output").innerHTML = "101: <b>" + username + " log in successfully.</b>";
+              document.getElementById("username*").innerHTML = username;
+          } 
+          else if (result === "fail") {
+              window.location.href = "./sign_up.html";
+          }
+      }
+      document.addEventListener('DOMContentLoaded', function(){init();});
+  </script>
 </html>

@@ -26,13 +26,13 @@
     #page > filter {
         grid-area: filter;
         padding:10px;
-        background-size: 50% 50%;
+      
     }
     
     #page > result {
         grid-area: result;
-       
         padding:10px;
+        border-left: 2px solid black
         
     }
     #page > contact {
@@ -80,17 +80,7 @@
     .checked {
         color:purple;
     }
-    .starRateFilter label{
-        color: black;
-        font-size: 30px;
-       
-    }
-    filter button{
-    background: transparent;
-    border-color: transparent;    
-    width:auto;
-    color: grey;
-    }
+
 
 result label{
     color: black;
@@ -112,9 +102,10 @@ color: cornflowerblue;
 </style>
  <body>
     <section id ="page">
-     <header><button id="homeBtn"onclick="window.location.href = './index.html';">Home</button>
-     <button id="signupBtn" onclick="window.location.href = './sign_up.html';">Sign up</button>
-    <button id="loginBtn" onclick="window.location.href = './log_in.html';">Log in</button>
+        <header>
+        <div id="profile"></div>
+        <div id="signup"><button id="signupBtn"onclick="window.location.href = './sign_up.html';">Sign up</button></div>
+        <div id="login"><button id="loginBtn" onclick="window.location.href = './log_in.html';">Log in</button></div>
     </header>
 <search>
 <!-- Search form -->
@@ -132,52 +123,11 @@ color: cornflowerblue;
     <button id="submit" onclick="searchShop()" type="submit">Search</button>
 </div>
 </search>
-<filter>
-    <section class="starRateFilter" >
-        <label>Avg.Customer Review<label>
-    <div>
-        <button name="Rating" id="starRate"  onclick="starnumber()"value="0">Reset</button>
-    </div> 
-    <div>
-        <button name="Rating"  id="starRate"  onclick="starnumber()" value="4">
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>&up</button>
-    </div>
-    <div></div>
-    <div>
-        <button name="Rating" id="starRate"  onclick="starnumber()" value="3" >
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>&up</button>
-    </div>
-    <div>
-        <button  name="Rating"id="starRate"  onclick="starnumber()" value="2">
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>&up</button>
-    </div>
-    <div>
-        <button name="Rating" id="starRate"  onclick="starnumber()" value="1">
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star "></span>
-        <span class="fa fa-star "></span>
-        <span class="fa fa-star "></span>
-        <span class="fa fa-star"></span>&up</button>
-    </div>
-
-    </section>
-</filter>
+<filter></filter>
 <result>
 <label>Result</label>
     <div id="output"></div>
-    <!--
+   
     <div class="stores">
         <img alt="store" src="./images/cat-example.jpg">
         <div class="info">
@@ -201,12 +151,12 @@ color: cornflowerblue;
     </div>
    </div>
 
--->
+
    <div><p id="output"></div>
 
    
 </div>
--->
+
 
  
 </result>
@@ -215,4 +165,16 @@ color: cornflowerblue;
         
             </section>
         </body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+ <script>
+     console.log("customer page"+localStorage.getItem('islogin'));
+if(localStorage.getItem('islogin')==="true"){
+    document.getElementById("profile").innerHTML="<button id=\"profileBtn\" onclick=\"counterProfileRead()\">Profile</button>";
+    document.getElementById("signup").innerHTML="";
+    document.getElementById("login").innerHTML="";
+    
+}
+
+        </script>
         </html>
