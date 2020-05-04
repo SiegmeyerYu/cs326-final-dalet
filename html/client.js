@@ -122,7 +122,7 @@ function counterShopRead() {
 function counterShopEdit() {
 	(async () => {
 		console.log("shop edit in process.");
-		let username = document.getElementById("username*").textContent;
+		let username = localStorage.getItem('username');
 		let shop_name = document.getElementById("shop name").value;
 		let shop_image = document.getElementById("shop image").value;
 		let shop_type = document.getElementById("shop type").value;
@@ -172,23 +172,18 @@ function counterShopEdit() {
 function counterShopDelete() {
 	(async () => {
 		console.log("Shop delete in process.");
-		let username; // NEED FIX
-		let alias = document.getElementById("alias").textContent;
+		let username = localStorage.getItem('username');
 		const data = {'username':username};
 		const newURL = url + "/shop_delete";
 		console.log("counterLogin: fetching " + newURL);
 		// post data to database
 		const resp = await postData(newURL, data);
 		const j = await resp.json();
-		let result = 'fail';
-		if (j['result'] !== 'error') {
-			result = 'succeed';
+		if (j['result'] !== 'succeed') {
+			localStorage.setItem('shop_name', 'null');
+			// redirection
+			window.document.location = "./profile.html";
 		}
-		// set data in local storage
-		localStorage.setItem('shop_delete_result', 'succeed');// NEED FIX
-		localStorage.setItem('alias', alias);
-		// redirection
-		window.document.location = "./profile.html";   
 		})();
 }
 

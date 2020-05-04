@@ -4,8 +4,6 @@
         <meta charset="UTF-8">
         <title>Pet Connection/shop</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- Google icon-->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <style>
@@ -64,16 +62,6 @@
                 margin-left:150px;
                 margin-right:50px;
             }
-            #overall_rating {
-                float:right;
-                margin-top:10px;
-                margin-right:20px;
-            }
-            .comment_rating{
-                float:right;
-                margin-top:10px;
-                margin-right:20px;
-            }
             h1 {
                 margin-bottom:50px;
             }
@@ -107,19 +95,6 @@
                 margin-right:30px;
                 margin-bottom:30px;
             }
-            #comments {
-                grid-area:comments;
-                margin-left:150px;
-                margin-bottom:200px;
-                margin-right:70px;
-            }
-            .comment {
-                padding:10px;
-                border:2px solid gray;
-            }
-            .comment_text {
-                font-size:15pt;
-            }
             #merchant_web {
                 display:inline-block;
                 padding:10px;
@@ -133,34 +108,6 @@
             #merchant_web:hover {
                 background-color: rgb(140,3,252);
                 text-decoration:none;
-            }
-            .act_link {
-                display:block;
-                margin-top:30px;
-                color:black;
-            }
-            .act_link:hover {
-                text-decoration:none;
-            }
-            .act_block {
-                border:2px solid gray;
-                height:120px;
-                color:black;
-            }
-            .act_block:hover {
-                border-color:purple;
-            }
-            .act_img {
-                float:left;
-                width:116px;
-                height:116px;
-                margin-right:20px;
-                background-color:lightgray;
-                clear:left;
-            }
-            .act_name {
-                font-size:16pt;
-                margin-bottom:10px;
             }
             .material-icons.yellow {
                 font-size:30px;
@@ -177,9 +124,6 @@
             }
             .material-icons.add:hover {
                 color: rgb(140,3,252);
-            }
-            #your_comment{
-                width: 800px;
             }
             #err_message {
                 color:red;
@@ -216,8 +160,8 @@
                 <img alt="cat picture" src="" class="picture" id="pic4">
             </div>
 
-            <p id="shop_id*"><p>
-            <p id="username*"></p>
+            <p id="shop_name*" hidden><p>
+            <p id="username*" hidden></p>
         </div>
 
         <div id="right">
@@ -238,7 +182,6 @@
         <script>
             const init = function(e) {
                 let username = localStorage.getItem('username');
-                let shop_id = localStorage.getItem('shop_id');
 			    let shop_name = localStorage.getItem('shop_name');
 			    let shop_image = localStorage.getItem('shop_image');
 			    let shop_type = localStorage.getItem('shop_type');
@@ -254,7 +197,7 @@
 			    let rate = localStorage.getItem('rate');
                 let comment = localStorage.getItem('comment');
 
-                document.getElementById('shop_id*').textContent = shop_id;
+                document.getElementById('shop_name*').textContent = shop_name;
                 document.getElementById('username*').textContent = username;
                 document.getElementById('shop_name').textContent = shop_name;
                 //document.getElementById('shop_image').src = shop_image;
@@ -267,23 +210,6 @@
                 //document.getElementById('pic2').src = pic2;
                 //document.getElementById('pic3').src = pic3;
                 //document.getElementById('pic4').src = pic4;
-
-                let rating = document.getElementById('overall_rating');
-                for(let i = 0; i < 5; i++){
-                    if ((i+0.5)<=rate){
-                        rating.innerHTML += '<span class="material-icons yellow">grade</span>';
-                    }
-                    else{
-                        rating.innerHTML += '<span class="material-icons gray">grade</span>';
-                    }
-                }
-
-                let len = comment.length;
-                let comment_zone = document.getElementById('comments');
-                if(len>3) {len=3;}
-                for(let i = 0; i < len; i++){
-                    comment_zone.innerHTML += '<div class="comment"><p class="comment_text">&nbsp;&nbsp;&nbsp;&nbsp;'+comment[comment.length-1-i]+'</p></div>'
-                }
             }   
             document.addEventListener('DOMContentLoaded', function(){init();});
         </script>
