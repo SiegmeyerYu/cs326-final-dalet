@@ -179,7 +179,7 @@ function counterShopDelete() {
 		// post data to database
 		const resp = await postData(newURL, data);
 		const j = await resp.json();
-		if (j['result'] !== 'succeed') {
+		if (j['result'] === 'succeed') {
 			localStorage.setItem('shop_name', 'null');
 			// redirection
 			window.document.location = "./profile.html";
