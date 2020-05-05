@@ -128,6 +128,7 @@
 
         <header>
             <div id="profile"></div>
+            <div id="logout"></div>
             <div id="signup"><button id="signupBtn"onclick="window.location.href = './sign_up.html';">Sign up</button></div>
             <div id="login"><button id="loginBtn" onclick="window.location.href = './log_in.html';">Log in</button></div>
         </header>
@@ -143,30 +144,31 @@
     </section>
 
     <div><p id="output"></p></div>
-    <p id="username*" hidden>eaf</p>
+    <p id="username*" hidden>user1</p>
    
 </body>
 
 <script src="client.js"></script>
 <script>
- //Check if user already log in(if user logged in,his name will be stored in hidden section) 
- //if logged in,display profile button,and remove signup,login button.
-    if(document.getElementById("username*").innerText!==""){
-      document.getElementById("profile").innerHTML="<button id=\"profileBtn\" onclick=\"counterProfileRead()\">Profile</button>";
-      document.getElementById("signup").innerHTML="";
-      document.getElementById("login").innerHTML="";
-      localStorage.setItem('islogin',"true");
-    }
-      const init = function(e) {
-          let result = localStorage.getItem('result');
+    const init = function(e) {
+        let result = localStorage.getItem('result');
           let username = localStorage.getItem('username');
           if (result === "succeed") {
-              document.getElementById("output").innerHTML = "101: <b>" + username + " log in successfully.</b>";
               document.getElementById("username*").innerHTML = username;
           } 
           else if (result === "fail") {
               window.location.href = "./sign_up.html";
           }
+
+        //Check if user already log in(if user logged in,his name will be stored in hidden section) 
+        //if logged in,display profile button,and remove signup,login button.
+        if(document.getElementById("username*").innerText!==""){
+            document.getElementById("profile").innerHTML='<button id="profileBtn" onclick="counterProfileRead()">Profile</button>';
+            document.getElementById("logout").innerHTML='<button onclick="counterLogout()">Log out</button>';
+            document.getElementById("signup").innerHTML="";
+            document.getElementById("login").innerHTML="";
+            localStorage.setItem('islogin',"true");
+        }
       }
       document.addEventListener('DOMContentLoaded', function(){init();});
   </script>

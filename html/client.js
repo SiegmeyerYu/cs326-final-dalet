@@ -1,4 +1,5 @@
-const url = "https://fast-sea-42002.herokuapp.com/dalet";
+//const url = "https://fast-sea-42002.herokuapp.com/dalet";
+const url = "http://localhost:8080/dalet";
 
 async function postData(url, data) {
     const resp = await fetch(url,
@@ -47,6 +48,15 @@ function counterLogin() {
 		else {
 			document.getElementById("err_message").innerHTML = result;
 		}
+		})();
+}
+
+function counterLogout(){
+	(async () => {
+		console.log("Log out.");
+		document.getElementById("username*").textContent="";
+		localStorage.setItem('username', "");
+		window.document.location = "./index.html";
 		})();
 }
 
@@ -200,7 +210,7 @@ function counterProfileCancel() {
 
 function counterProfileRead() {
 	(async () => {
-		let username = document.getElementById("username*").textContent;
+		let username = localStorage.getItem('username');
 		console.log("check2: "+username);
 		const data = {'username' : username};
 		const newURL = url + "/profile";
