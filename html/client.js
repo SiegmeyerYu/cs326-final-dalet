@@ -1,5 +1,5 @@
-//const url = "https://fast-sea-42002.herokuapp.com/dalet";
-const url = "http://localhost:8080/dalet";
+const url = "https://fast-sea-42002.herokuapp.com/dalet";
+//const url = "http://localhost:8080/dalet";
 
 async function postData(url, data) {
     const resp = await fetch(url,
