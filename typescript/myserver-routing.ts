@@ -39,9 +39,8 @@ export class MyServer {
 	this.router.post('/shop_edit', [this.editShopErrorHandler.bind(this), this.editShopHandler.bind(this), this.viewShopHandler.bind(this)]); //done
 	this.router.post('/shop_delete', this.deleteShopHandler.bind(this)); //done
 
-	this.router.post('/search',[this.shopNotFoundHandler.bind(this),this.viewSerachResultHandler.bind(this)]);
+	this.router.post('/search',[this.ShopNotMatchHandler.bind(this),this.viewsearchResultHandler.bind(this)]);
 
-	//this.router.post('/search',this.viewSearchResultHandler.bind(this));
 	// Set a fall-through handler if nothing matches.
 	this.router.post('*', async (request, response) => {
 	    response.send(JSON.stringify({ "result" : "command-not-found" }));
@@ -65,10 +64,11 @@ export class MyServer {
 	}
 
 	//for customer.html searchbar
-	private async viewSerachResultHandler(request,response):Promise<void>{
+	private async viewsearchResultHandler(request,response):Promise<void>{
+	
 		let keyword=request.body.shopname;
 		let shoptype=request.body.shoptype;
-		let shop = await this.theDatabase.serach_shop(keyword,shoptype);
+		let shop = await this.theDatabase.search_shop(keyword,shoptype);
 		response.write(JSON.stringify({'result' : 'succeed',
 		'owner' : shop.owner,
 		'name' : shop.name,
@@ -83,9 +83,24 @@ export class MyServer {
 		'picture2' : shop.pic2_src,
 		'picture3' : shop.pic3_src,
 		'picture4' : shop.pic4_src}));
+		
 		response.end();
+		
 	}
-
+	//for customer.html searchbar,error checker
+	private async ShopNotMatchHandler(request, response, next) : Promise<void> {
+	
+		let keyword=request.body.shopname;
+		let shoptype=request.body.shoptype;
+		let shop = await this.theDatabase.match_shop(keyword,shoptype);
+		if(shop===null){
+			response.write(JSON.stringify({'result' : 'error'}));
+			response.end();
+		}
+		else {
+			next();
+		}
+	}
 	private async userNotFoundHandler(request, response, next) : Promise<void> {
 		let username = request.body.username;
 		console.log("check3: "+username);

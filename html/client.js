@@ -287,36 +287,35 @@ function searchShop() {
     (async () => {
 		let searchKeyword=document.getElementById("keyword").value;
 		let searchType=document.getElementById("dropdown_type").value;
+		console.log("Client shoptype: "+searchType);
 		const data={'shopname':searchKeyword,
 					'shoptype':searchType
 					};		
 		const newURL = url+"/search";
 		console.log("searchShop: fetching " + newURL);
 		const resp = await postData(newURL,data);
-		const j = await resp.json();	
+		const j = await resp.json();
 		
 		if (j['result'] !== 'error') {
-			document.getElementById("output").innerHTML +=j['logo']+"<br>"+
-			"Shopname: "+"<b>"+j['name']+"</b>"+"<br>"+
-			"Type: 	   "+"<b>"+j['type']+"</b>"+"<br>" +
-			"Hours:    "+"<b>"+j['open hour']+"</b>"+"<br>"+
-			"Address:  "+"<b>"+j['address']+"</b>"+"<br>"+
-			"Email:    "+"<b>"+j['email']+"</b>"+"<br>"+
-			"Phone:    "+"<b>"+j['phone']+"</b>"+"<br>"+
-			" <input type=\"button\" onclick=\"location.href=" +j['uri']+";\" value=\"select\" class=\"button\"/>";
-		
-	
-	
-	
-				}	
-
-	/*if (j['result'] !== 'error') {
-		document.getElementById("output").innerHTML +=j['logo']+"<br>"+
+		document.getElementById("output").innerHTML =j['logo']+"<br>"+
 		"Shopname: "+"<b>"+j['name']+"</b>"+"<br>"+
 		"Type: 	   "+"<b>"+j['type']+"</b>"+"<br>" +
+		"Hours:    "+"<b>"+j['open hour']+"</b>"+"<br>"+
 		"Address:  "+"<b>"+j['address']+"</b>"+"<br>"+
+		"Email:    "+"<b>"+j['email']+"</b>"+"<br>"+
 		"Phone:    "+"<b>"+j['phone']+"</b>"+"<br>"+
-		"<input type=\"button\" onclick=\"location.href='https://google.com';\" value=\"select\" class=\"button\"/>";
-	*/		
-	}	)();
-}
+		" <input type=\"button\" onclick=\"location.href=" +j['uri']+";\" value=\"select\" class=\"button\"/>"
+		"<br>------------------------------------------------------------</br>";
+	  //	<input type=\"button\" onclick=\"location.href='https://google.com';\" value=\"select\" class=\"button\"/>";
+}	
+
+		else{
+			document.getElementById("output").innerHTML = "No match result";
+
+		}
+		
+	}
+	)
+		
+		
+		();}
