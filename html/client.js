@@ -1,5 +1,5 @@
-const url = "https://fast-sea-42002.herokuapp.com/dalet";
-//const url = "http://localhost:8080/dalet";
+//const url = "https://fast-sea-42002.herokuapp.com/dalet";
+const url = "http://localhost:8080/dalet";
 
 async function postData(url, data) {
     const resp = await fetch(url,
@@ -101,10 +101,12 @@ function counterShopCancel() {
 
 function counterShopRead() {
 	(async () => {
-		let shop_id = document.getElementById("shop_id").value;
-		const data = {'shop_id' : shop_id};
+		let shop_id = document.getElementById("shop_id").textContent;
+		let username = localStorage.getItem("username");
+		console.log("check counterShopRead(): "+shop_id);
+		const data = {'shop_id' : shop_id, 'username': username};
 		const newURL = url + "/shop";
-		console.log("counterLogin: fetching " + newURL);
+		console.log("counterShopRead: fetching " + newURL);
 		const resp = await postData(newURL, data);
 		const j = await resp.json();
 		if (j['result'] === 'succeed') {
@@ -120,6 +122,7 @@ function counterShopRead() {
 			localStorage.setItem('pic2', j['picture2']);
 			localStorage.setItem('pic3', j['picture3']);
 			localStorage.setItem('pic4', j['picture4']);
+			localStorage.setItem('authentication',j['authentication']);
 			// redirection
 			window.document.location = "./shop.html";
 		}
@@ -304,18 +307,17 @@ function searchShop() {
 		"Address:  "+"<b>"+j['address']+"</b>"+"<br>"+
 		"Email:    "+"<b>"+j['email']+"</b>"+"<br>"+
 		"Phone:    "+"<b>"+j['phone']+"</b>"+"<br>"+
-		" <input type=\"button\" onclick=\"location.href=" +j['uri']+";\" value=\"select\" class=\"button\"/>"
+		//" <input type=\"button\" onclick=\"location.href=" +j['uri']+";\" value=\"select\" class=\"button\"/>"
+		"<button onclick='counterShopRead()' class='button'>Select</button>"
 		"<br>------------------------------------------------------------</br>";
-	  //	<input type=\"button\" onclick=\"location.href='https://google.com';\" value=\"select\" class=\"button\"/>";
-}	
+		
+		console.log("check searchShop(): "+j['name']);
+		document.getElementById("shop_id").textContent = j['name'];
+		}	
 
 		else{
 			document.getElementById("output").innerHTML = "No match result";
 
 		}
-		
-	}
-	)
-		
-		
-		();}
+	})();
+}

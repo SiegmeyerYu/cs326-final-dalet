@@ -133,6 +133,7 @@ img{
 <label>Result</label>
     <div id="output"></div>
    
+    <!--
     <div class="stores">
         <img alt="store" src="./images/cat-example.jpg">
         <div class="info">
@@ -154,28 +155,27 @@ img{
         <div><span>address</span></div>
         <div class="button"><button name="choice" value="second_result">Select</div>
     </div>
-   </div>
+    </div>
+    -->
 
 
    <div><p id="output"></div>
+    <p id="shop_id" hidden></p>
 
    
 </div>
 
-
- 
 </result>
-    </section>
-        </body>
+</section>
+</body>
 
 
- <script>
+<script>
     if(localStorage.getItem('islogin')==="true"){
-    document.getElementById("profile").innerHTML="<button id=\"profileBtn\" onclick=\"counterProfileRead()\">Profile</button>";
-    document.getElementById("signup").innerHTML="";
-    document.getElementById("login").innerHTML="";
-    
-}
+        document.getElementById("profile").innerHTML="<button id=\"profileBtn\" onclick=\"counterProfileRead()\">Profile</button>";
+        document.getElementById("signup").innerHTML="";
+        document.getElementById("login").innerHTML="";   
+    }
 
-        </script>
-        </html>
+</script>
+</html>

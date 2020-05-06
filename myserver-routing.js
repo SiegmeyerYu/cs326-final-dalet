@@ -229,7 +229,7 @@ class MyServer {
     }
     shopNotFoundHandler(request, response, next) {
         return __awaiter(this, void 0, void 0, function* () {
-            let shop_name = request.body.name;
+            let shop_name = request.body.shop_id;
             console.log("check shop not found error, shop name: " + shop_name);
             let value = yield this.theDatabase.isFound_shop(shop_name);
             if (!value) {
@@ -244,13 +244,20 @@ class MyServer {
     }
     viewShopHandler(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            let shop_name = request.body.name;
+            let shop_name = request.body.shop_id;
+            let user = yield this.theDatabase.get_user(request.body.username);
             console.log("view_shop_id:" + shop_name);
             if (shop_name === undefined) {
-                let user = yield this.theDatabase.get_user(request.body.username);
                 shop_name = user.shop_index;
             }
             let shop = yield this.theDatabase.get_shop(shop_name);
+            let authentication;
+            if (user.shop_index === shop_name) {
+                authentication = 'true';
+            }
+            else {
+                authentication = 'false';
+            }
             response.write(JSON.stringify({ 'result': 'succeed',
                 'owner': shop.owner,
                 'name': shop.name,
@@ -264,7 +271,8 @@ class MyServer {
                 'picture1': shop.pic1_src,
                 'picture2': shop.pic2_src,
                 'picture3': shop.pic3_src,
-                'picture4': shop.pic4_src }));
+                'picture4': shop.pic4_src,
+                'authentication': authentication }));
             response.end();
         });
     }
