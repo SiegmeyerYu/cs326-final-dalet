@@ -135,7 +135,7 @@
     <body>
         <div id="left">
             <button onclick="window.location.href = './customer.html';">Go Back</button>
-            <button onclick="window.location.href = './shop_edit.html';" id="edit">Edit My Shop</button>
+            <div id="authen"><button onclick="window.location.href = './shop_edit.html';" id="edit">Edit My Shop</button></div>
             <div id="info">
                 <img alt="shop" id="shop_img" src="">
                 <div id="overall_rating"></div>
@@ -193,9 +193,12 @@
 			    let pic1 = localStorage.getItem('pic1');
 			    let pic2 = localStorage.getItem('pic2');
 			    let pic3 = localStorage.getItem('pic3');
-			    let pic4 = localStorage.getItem('pic4');
-			    let rate = localStorage.getItem('rate');
-                let comment = localStorage.getItem('comment');
+                let pic4 = localStorage.getItem('pic4');
+                let authentication = localStorage.getItem('authentication');
+
+                if(authentication === 'false') {
+                    document.getElementById('authen').innerHTML = "";
+                }
 
                 document.getElementById('shop_name*').textContent = shop_name;
                 document.getElementById('username*').textContent = username;
