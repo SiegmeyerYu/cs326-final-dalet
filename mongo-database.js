@@ -132,28 +132,66 @@ class Database {
         });
     }
     //for customer.html searchbar
-    serach_shop(key, type) {
+    search_shop(key, type) {
         return __awaiter(this, void 0, void 0, function* () {
             let db = this.client.db(this.dbName);
-            let collection = db.collection(this.collection_user);
-            if (type == "N/A") {
-                let result = yield collection.find({
-                    name: { $regex: new RegExp(key, "g") }
+            let collection = db.collection(this.collection_shop);
+            console.log("check search_shop name,: " + key);
+            console.log("check search_shop type,: " + type);
+            ///If user didn't specific what type of shop they want
+            if (type === "N/A") {
+                let result = yield collection.findOne({ 'name': key });
+                console.log("print result1: " + result);
+                //if shop is found
+                if (!(result === null)) {
+                    return result;
+                } //if not
+                else {
+                    let result = yield collection.findOne({ name: { $regex: new RegExp(key) } });
+                    return result;
+                }
+            }
+            //if user specific shop type in search criteria
+            else {
+                let result = yield collection.findOne({ 'name': key, 'type': type });
+                if (!(result === null)) {
+                    return result;
+                }
+                else {
+                    let result = yield collection.findOne({
+                        name: { $regex: new RegExp(key) }, 'type': type
+                    });
+                    return result;
+                }
+            }
+            //var cursor =await collection.find({name:key});
+            //var result:string[];
+            //var i=0;
+            //cursor.each(function(err,doc){
+            //if(!isNull(doc)){
+            //console.log("check"+JSON.stringify(doc));
+        });
+    }
+    ;
+    match_shop(key, type) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let db = this.client.db(this.dbName);
+            let collection = db.collection(this.collection_shop);
+            if (key.length == 0) {
+                return null;
+            }
+            if (type === "N/A") {
+                let result = yield collection.findOne({
+                    name: { $regex: new RegExp(key) }
                 });
+                return result;
             }
             else {
-                let result = yield collection.find({ 'name': { "$regex": new RegExp(key, "g") }, 'type': type });
+                let result = yield collection.findOne({
+                    name: { $regex: new RegExp(key) }, 'type': type
+                });
+                return result;
             }
-            /*
-            let result={'result' : 'search',
-            'name' : "Petpaw",
-            'type' : "Hospital",
-            'address' :"123 central ave,Amherst,MA",
-            'phone' : "781333-xxxx",
-            'logo_src' : "<img alt=\"store\" src=\"./images/cat-example.jpg\">",
-            'rate' : "5 stars" }
-            return result;
-            */
         });
     }
 }

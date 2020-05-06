@@ -135,8 +135,8 @@
 
         <main>
             <label>Pet Connection</label>
-            <button id="merchantBtn" onclick="window.location.href = './shop_edit.html';">I am a merchant</button>
-            <button id="customerBtn" onclick="window.location.href = './customer.html';">I am a customer</button>
+            <button id="merchantBtn" onclick="logInBeforeEditShop()">I am a merchant</button>
+            <button id="customerBtn" onclick="logInBeforeSearch()">I am a customer</button>
             <img alt="mainpage_picture" src="./images/mainpage_picture.jpg">
 
         </main>
@@ -150,6 +150,24 @@
 
 <script src="client.js"></script>
 <script>
+    const logInBeforeEditShop = function(e){
+        if(document.getElementById("username*").innerText===""){
+            alert("Please log in first.");
+        }
+        else {
+            window.location.href = './shop_edit.html';
+        }
+    }
+
+    const logInBeforeSearch = function(e){
+        if(document.getElementById("username*").innerText===""){
+            alert("Please log in first.");
+        }
+        else {
+            window.location.href = './customer.html';
+        }
+    }
+
     const init = function(e) {
         let result = localStorage.getItem('result');
           let username = localStorage.getItem('username');

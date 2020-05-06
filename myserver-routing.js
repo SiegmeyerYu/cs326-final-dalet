@@ -38,9 +38,7 @@ class MyServer {
         this.router.post('/shop', [this.shopNotFoundHandler.bind(this), this.viewShopHandler.bind(this)]); //done
         this.router.post('/shop_edit', [this.editShopErrorHandler.bind(this), this.editShopHandler.bind(this), this.viewShopHandler.bind(this)]); //done
         this.router.post('/shop_delete', this.deleteShopHandler.bind(this)); //done
-        //this.router.post('/search',[this.shopNotFoundHandler.bind(this),this.viewSearchResultHandler.bind(this)]);
-        //for test purpose excluded shopenotfoundhandler
-        this.router.post('/search', this.viewSearchResultHandler.bind(this));
+        this.router.post('/search', [this.ShopNotMatchHandler.bind(this), this.viewsearchResultHandler.bind(this)]);
         // Set a fall-through handler if nothing matches.
         this.router.post('*', (request, response) => __awaiter(this, void 0, void 0, function* () {
             response.send(JSON.stringify({ "result": "command-not-found" }));
@@ -63,20 +61,41 @@ class MyServer {
         });
     }
     //for customer.html searchbar
-    viewSearchResultHandler(request, response) {
+    viewsearchResultHandler(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log("here!");
             let keyword = request.body.shopname;
             let shoptype = request.body.shoptype;
-            let shop = yield this.theDatabase.serach_shop(keyword, shoptype);
-            response.write(JSON.stringify({ 'result': 'serach',
+            let shop = yield this.theDatabase.search_shop(keyword, shoptype);
+            response.write(JSON.stringify({ 'result': 'succeed',
+                'owner': shop.owner,
                 'name': shop.name,
                 'type': shop.type,
+                'open hour': shop.open_hour,
                 'address': shop.address,
                 'phone': shop.phone,
+                'email': shop.email,
+                'url': shop.url,
                 'logo': shop.logo_src,
-                'rate': shop.rate, }));
+                'picture1': shop.pic1_src,
+                'picture2': shop.pic2_src,
+                'picture3': shop.pic3_src,
+                'picture4': shop.pic4_src }));
             response.end();
+        });
+    }
+    //for customer.html searchbar,error checker
+    ShopNotMatchHandler(request, response, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let keyword = request.body.shopname;
+            let shoptype = request.body.shoptype;
+            let shop = yield this.theDatabase.match_shop(keyword, shoptype);
+            if (shop === null) {
+                response.write(JSON.stringify({ 'result': 'error' }));
+                response.end();
+            }
+            else {
+                next();
+            }
         });
     }
     userNotFoundHandler(request, response, next) {
