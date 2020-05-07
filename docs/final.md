@@ -12,6 +12,14 @@ Github: Cishard
 # Overview
 This website is made for pet owners and pet-related practitioners, gathering the infomation of pet shops, hospitals and toy shops, and providing filter functions by shop type and name. Typically, if people want to buy pets, they needs to search pet shops on google and look at these websites one by one. With the help of our application, they can find their desired pets more conveniently.
 
+# Project link
+
+https://fast-sea-42002.herokuapp.com/
+
+# Demo link
+
+https://www.youtube.com/playlist?list=PLMfVkZ9dyZVdlqfZTPuA1hADjUsylpYbq
+
 # User Interface
 Log in
 ![alt log in](./images/final_login.png)
