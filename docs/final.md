@@ -12,7 +12,7 @@ Github: Cishard
 # Overview
 This website is made for pet owners and pet-related practitioners, gathering the infomation of pet shops, hospitals and toy shops, and providing filter functions by shop type and name. Typically, if people want to buy pets, they needs to search pet shops on google and look at these websites one by one. With the help of our application, they can find their desired pets more conveniently.
 
-#User Interface
+# User Interface
 Log in
 ![alt log in](./images/final_login.png)
 
@@ -35,6 +35,7 @@ If the user does not manage a shop, then it shows
 ![alt profile](./images/final_profile_3.png)
 
 Personal Prodile Edit Page
+PS: There is some other languages shown on the screenshot which is due to the language setting of browser, so if you are using English on your browser, they will be in English. These buttons are used to upload pictures.
 ![alt profile edit](./images/final_profile_edit.png)
 
 Shop
@@ -45,7 +46,7 @@ Shop Edit Page
 ![alt shop edit](./images/final_shop_edit_2.png)
 
 
-#API
+# API
 /log_in : allows user to log in.
 
 /sign_up : allows user to sign up.
@@ -62,7 +63,7 @@ Shop Edit Page
 
 /shop_delete : allows user to delete his/her own shop.
 
-#Database
+# Database
 **User's Collection**<br>
 username | string<br>
 password | string<br>
@@ -94,7 +95,7 @@ pic2\_src | any<br>
 pic3\_src | any<br>
 pic4\_src | any<br>
 
-#URL Routes
+# URL Routes
 **userNotFoundHandler**<br>
 seaches the input username from database, and returns error message if username is not found.
 
@@ -137,10 +138,10 @@ searches the shop from database by its name or type, sends error message if no s
 **viewSearchResultHandler**<br>
 searchs the shop from database by its name or type, sends these data to local storage.
 
-#Authentication
+# Authentication
 When the user is not logged in, we ban all the functionalities for him/her except log in or sign up. The user can only access his/her own profile because we haven't implemented function to allow users to read others' profiles yet. The "Edit My Shop" button only shows when it is viewed by its owner.
 
-#Division of Labor
+# Division of Labor
 **Chuyang Zhong**
 
 HTML/CSS:
@@ -196,7 +197,7 @@ Back-end Implemention:
 
 Markdown Files
 
-#Conclusion
+# Conclusion
 We learnt many things from this course because webpage programming was brand new to all of us, and we enjoyed the process for most of the time. We've been met a lot of difficulties, such as:
 
 - how to use bootstrap
