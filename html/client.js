@@ -92,8 +92,6 @@ function counterSignUp() {
 function counterShopCancel() {
 	(async () => {
 		console.log("Shop Edit Cancelled.");
-		// set data in local storage
-		localStorage.setItem('result', 'cancelled');
 		// redirection
 		window.document.location = "./index.html";
 		})();
