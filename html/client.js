@@ -298,7 +298,7 @@ function searchShop() {
 		const j = await resp.json();
 		
 		if (j['result'] !== 'error') {
-		document.getElementById("output").innerHTML =j['logo']+"<br>"+
+		document.getElementById("output").innerHTML ="<br>"+
 		"Shopname: "+"<b>"+j['name']+"</b>"+"<br>"+
 		"Type: 	   "+"<b>"+j['type']+"</b>"+"<br>" +
 		"Hours:    "+"<b>"+j['open hour']+"</b>"+"<br>"+
