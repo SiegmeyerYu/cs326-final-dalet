@@ -148,6 +148,7 @@
 
         <p id="username*" hidden></p>
         <p id="output"></p>
+        <p id="shop_id" hidden></p>
         
     </body>
     <footer>
@@ -175,6 +176,7 @@
 
                 document.getElementById("username*").textContent = username;
                 document.getElementById("alias").textContent = alias;
+                document.getElementById("shop_id").textContent = shop_name;
                 //document.getElementById("portrait") = portrait;
                 document.getElementById("location").textContent = location;
 
@@ -187,7 +189,7 @@
                 }
 
                 if(shop_name !== "null") {
-                    document.getElementById("shop").innerHTML = '<a href="./shop.html" target="_blank" class="shop_link"><div class="shop_block">' +
+                    document.getElementById("shop").innerHTML = '<a href="#" onclick="counterShopRead();return false;" target="_blank" class="shop_link"><div class="shop_block">' +
                         '<img alt="shop image" src="" class="shop_img"><p class="shop_name">'+shop_name+'</p><p>'+type+'</p>' +
                         '<p>'+address+'</p></div></a><button id="delete" onclick="counterShopDelete()">Delete Shop</button>';
                 }
