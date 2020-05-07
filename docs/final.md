@@ -34,7 +34,7 @@ Personal Profile
 If the user does not manage a shop, then it shows
 ![alt profile](./images/final_profile_3.png)
 
-Personal Prodile Edit Page
+Personal Prodile Edit Page<br>
 PS: There is some other languages shown on the screenshot which is due to the language setting of browser, so if you are using English on your browser, they will be in English. These buttons are used to upload pictures.
 ![alt profile edit](./images/final_profile_edit.png)
 
